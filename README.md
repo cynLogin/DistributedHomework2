@@ -13,3 +13,4 @@ YQYJin
 - 用户登录,管理员登录模板界面
 - 添加 */resource/mysql/database.sql* 作为构建数据库的sql文件,数据库操作都通过向该文件
 中添加sql代码执行,以保证数据库一致性
+- 你好
