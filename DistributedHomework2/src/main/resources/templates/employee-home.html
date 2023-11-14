@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>员工主页</title>
+    <!-- 引入layui的CSS文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css">
+
+    <style>
+        /* 自定义样式 */
+        .custom-header {
+            font-size: 24px;
+            /* 调整标题字体大小 */
+        }
+
+        .custom-welcome {
+            font-size: 20px;
+            /* 欢迎消息字体大小 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-container">
+        <div class="layui-row">
+            <!-- 左侧部分 -->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎!'}">
+                    </div>
+                    <div class="layui-card-body layui-edge-right">
+
+                        <form action="/user/logout" method="post">
+                            <input type="submit" class="layui-btn " value="登出">
+                            <button class="layui-btn " id="userInfoBtn">个人信息</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-container">
+        <div class="layui-row">
+            <!-- 左侧部分 -->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header layui-edge-right">客户管理</div>
+                    <div class="layui-card-body">
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header layui-edge-right">客户跟进</div>
+                    <div class="layui-card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-container">
+        <div class="layui-row">
+            <!-- 左侧部分 -->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header layui-edge-right">订单管理</div>
+                    <div class="layui-container">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 引入jQuery和Bootstrap的JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
+
+    <script>
+
+
+
+    </script>
+</body>
+
+</html>
