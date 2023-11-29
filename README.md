@@ -29,11 +29,12 @@ YQYJin
 
 接口说明:
 
-- /getcustomerinfo/{customerID},GET:返回客户信息,字段名id,username,gender,phoneNumber,totalConsumption,address
+- /employee/getcustomerinfo/{customerID},GET:返回客户信息,字段名id,username,gender,phoneNumber,totalConsumption,address
+- /employee/order/bycustomerid/{customerID},GET: 返回订单列表,字段:id,orderTime,amountMoney,completionStatus,content(订单内容)
+- /employee/orderDetail/{orderID},GET:返回根据id查询到的订单信息
+- /employee/createOrder,POST:创建新订单
+- /employee/querycustomer,POST: 发送数据{customerName:name,customerPhone:phone},返回到的客户信息
 
-- /order/bycustomerid/{customerID},GET: 返回订单列表,字段:id,orderTime,amountMoney,completionStatus,content(订单内容)
+- /employee/addnewproduct,POST:创建新产品,报文内容:{productID,productName,unitPrice},创建成功返回"success"
 
-- /orderDetail/{orderID},GET:返回根据id查询到的订单信息
-
-- /customer/queryByName,POST: 发送数据{customerName:name},返回根据姓名查询到的客户信息
-- /customer/queryByPhone,POST: 发送数据{customerPhone:phone},返回根据电话查询到的客户信息
+- /employee/allProduct,GET:获取全部产品信息,返回报文结构应为列表,包括信息:{id,productName,unitPrice,inventoryNum}

@@ -23,8 +23,10 @@
             font-size: 20px;
             /* 欢迎消息字体大小 */
         }
+
         .custom-button-left {
-            margin-left: 110px; /* Adjust the distance from the left edge as needed */
+            margin-left: 110px;
+            /* Adjust the distance from the left edge as needed */
         }
     </style>
 </head>
@@ -78,30 +80,21 @@
                     <div class="layui-card-header custom-header-2 layui-edge-right">客户查询</div>
                     <div class="layui-card-body">
                         <div class="layui-form-item">
-
-
-                            <p>
+                            <label class="layui-form-label">客户姓名:</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="queryName" lay-verify="required" placeholder="请输入客户姓名"
-                                    class="layui-input">
+                                <input type="text" id="queryName" lay-verify="required" class="layui-input"
+                                    placeholder="请输入要查询的客户姓名" disabled>
                             </div>
-                            <button class="layui-btn" id="queryByNameBtn" lay-submit lay-filter="formSubmit">查询</button>
-                            </p>
-                            
                         </div>
                         <div class="layui-form-item">
-
-
-                            <p>
+                            <label class="layui-form-label">客户电话:</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="queryPhone" lay-verify="required" placeholder="请输入客户电话"
+                                <input type="text" id="queryPhone" lay-verify="required" placeholder="请输入要查询的客户电话"
                                     class="layui-input">
                             </div>
-                            <button class="layui-btn" id="queryByPhoneBtn" lay-submit lay-filter="formSubmit">查询</button>
-                            </p>
-                            
-                        </div>
 
+                        </div>
+                        <button class="layui-btn custom-button-left" id="queryBtn" >查询</button>
                     </div>
                 </div>
             </div>
@@ -172,7 +165,8 @@
                             </div>
                         </div>
                         <div class="layui-card-body">
-                            <button class="layui-btn custom-button-left" id="createOrderBtn" lay-submit lay-filter="formSubmit">提交</button>
+                            <button class="layui-btn custom-button-left" id="createOrderBtn" lay-submit
+                                lay-filter="formSubmit">提交</button>
                         </div>
                     </div>
                 </div>
@@ -202,25 +196,27 @@
 
 
         });
-        $("#queryByNameBtn").click(function () {
+        $("#queryBtn").click(function () {
             let name = $("#queryName").val();
-            if(name == "") {
-                alert("请输入客户姓名");
+            let phone= $("#queryPhone").val();
+            if (name == "" && phone == "") {
+                alert("请输入查询信息");
                 return;
             }
-            let formData= {
-                    customerName : name
-                }
+            let formData = {
+                customerName: name,
+                customerPhone: phone
+            }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/customer/queryByName",
+                url: "http://localhost:8080/employee/querycustomer",
                 contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData), 
+                data: JSON.stringify(formData),
                 success: function (response) {
-                    if (response!="fail") {
+                    if (response != "fail") {
                         alert("查询成功");
-                        let customerID=response.id;
-                        window.location.href = "http://localhost:8080/customer/"+customerID;
+                        let customerID = response.id;
+                        window.location.href = "http://localhost:8080/employee/customer/" + customerID;
                     } else {
                         alert("查询失败");
                     }
@@ -230,54 +226,27 @@
                 }
             });
         });
-        $("#queryByPhoneBtn").click(function () {
-            let phone = $("#queryPhone").val();
-            if(phone == "") {
-                alert("请输入客户电话");
-                return;
-            }
-            let formData= {
-                    customerPhone : phone
-                }
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/customer/queryByPhone",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData), 
-                success: function (response) {
-                    if (response!="fail") {
-                        alert("查询成功");
-                        let customerID=response.id;
-                        window.location.href = "http://localhost:8080/customer/"+customerID;
-                    } else {
-                        alert("查询失败");
-                    }
-                },
-                error: function (error) {
-                    console.log("Error:" + error);
-                }
-            });
-        });
+
         $("#createOrderBtn").click(function () {
             let customerName = $("#customerName").val();
             let price = $("#price").val();
             let orderContent = $("#orderContent").val();
-            if(customerName == ""|| price == ""|| orderContent == "") {
+            if (customerName == "" || price == "" || orderContent == "") {
                 alert("请输入完整信息");
                 return;
             }
-            let formData= {
-                    customerName : customerName,
-                    price : price,
-                    orderContent : orderContent
-                }
+            let formData = {
+                customerName: customerName,
+                price: price,
+                orderContent: orderContent
+            }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/createOrder",
+                url: "http://localhost:8080/employee/createOrder",
                 contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData), 
+                data: JSON.stringify(formData),
                 success: function (response) {
-                    if (response=="success") {
+                    if (response == "success") {
                         alert("订单创建成功");
                     } else {
                         alert("订单创建失败");

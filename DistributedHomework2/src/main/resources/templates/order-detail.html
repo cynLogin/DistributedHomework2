@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>订单详情页</title>
+    <!-- 引入layui的CSS文件 -->
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css">
+    <style>
+        /* 自定义样式 */
+        .custom-header {
+            font-size: 24px;
+            /* 调整标题字体大小 */
+        }
+
+        .custom-welcome {
+            font-size: 20px;
+            /* 欢迎消息字体大小 */
+        }
+
+        .button-bar {
+            display: flex;
+            background-color: #333;
+            /* 设置背景颜色 */
+            padding: 10px;
+            /* 设置内边距 */
+            padding-right: 20px;
+            text-align: center;
+            /* 文本居中 */
+            justify-content: flex-end;
+        }
+
+        .high-layui-input {
+            height: 80px;
+            /* Adjust the height as needed */
+        }
+        .custom-button-left {
+            margin-left: 110px; /* Adjust the distance from the left edge as needed */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layui-container">
+        <div class="layui-row">
+            <!-- 顶端消息-->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎来到用户信息界面!'}">
+                    </div>
+                    <div class="layui-card-body layui-edge-right">
+                        <button class="layui-btn " id="backBtn">返回</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <!-- 客户信息左侧部分 -->
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header">订单信息</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">订单编号:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="orderID" lay-verify="required" class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">订单总价:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="price" lay-verify="required" class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">下单时间:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="date" lay-verify="required" class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">订单备注:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="remark" lay-verify="required" class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">订单内容:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="content" lay-verify="required"
+                                        class="layui-input high-layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">订单状态:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="status" lay-verify="required" class="layui-input " disabled>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- 客户信息右侧部分 -->
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+
+                    <div class="layui-card-body">
+                        <form class="layui-form">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客户姓名:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="customerName" lay-verify="required" class="layui-input"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客户性别:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="genter" lay-verify="required" class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客户电话:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="phone" lay-verify="required" class="layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">客户地址:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="address" lay-verify="required"
+                                        class="layui-input high-layui-input" disabled>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <!-- 客户信息左侧部分 -->
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <p>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </p>
+                        <div class="layui-card-header custom-header">更新订单状态</div>
+                        <div class="layui-card-body">
+                            <form class="layui-form">
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">订单状态:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="newStatus" lay-verify="required" class="layui-input"
+                                            placeholder="请输入新的订单状态" disabled>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <button class="layui-btn custom-button-left" id="upgradeBtn">更新</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+            <!-- 引入layui的JS文件 -->
+            <script src="/layui/layui.js"></script>
+            <script src="/static/layui/layui.js"></script>
+
+            <!-- 引入jQuery和Bootstrap的JavaScript -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+            <script>
+                layui.use(['form', 'laydate'], function () {
+                    var form = layui.form;
+                    var laydate = layui.laydate;
+                });
+
+                var orderID = url.match(/\/order\/(\d+)$/)[1];
+
+                // 网页加载后渲染订单表格和加载信息
+                $(document).ready(function () {
+                    loadCustomerInfo(orderID);
+                });
+
+                //加载客户信息
+                function loadCustomerInfo(orderID,customerID) {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8080/employee/getorderinfo/" + orderID,
+                        success: function (response) {
+                            $("#orderID").val(response.id);
+                            $("#price").val(response.amountMoney);
+                            $("#date").val(response.orderTime);
+                            $("#remark").val(response.remark);
+                            $("#content").val(response.content);
+                            customerID=response.consumerId;
+                        },
+                        error: function (error) {
+                            console.log("Error:" + error);
+                        }
+                    });
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8080/employee/getcustomerinfo/" + customerID,
+                        success: function (response) {
+                            $("#userID").val(response.id);
+                            $("#userName").val(response.username);
+                            $("#gender").val(response.gender);
+                            $("#phone").val(response.phoneNumber);
+                            $("#consumption").val(response.totalConsumption);
+                            $("#address").val(response.address);
+                        },
+                        error: function (error) {
+                            console.log("Error:" + error);
+                        }
+                    });
+                }
+                // 更新按钮
+                $("#upgradeBtn").click(function () {
+                    
+                    let status = $("#newStatus").val();
+                    let formData={
+                        "status":status
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/employee/updateorderstatus/" + orderID,
+                        data: JSON.stringify(formData),
+                        contentType: "application/json;charset=utf-8", 
+                        success: function (response) {
+                            alert("更新成功");
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            console.log("Error:" + error);
+                        }
+                    });
+                });
+
+                // 返回
+                $("#backBtn").click(function () {
+                    window.history.back();
+                });
+            </script>
+</body>
+
+</html>

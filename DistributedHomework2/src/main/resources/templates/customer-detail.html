@@ -31,8 +31,10 @@
             /* 文本居中 */
             justify-content: flex-end;
         }
+
         .high-layui-input {
-        height: 80px; /* Adjust the height as needed */
+            height: 80px;
+            /* Adjust the height as needed */
         }
     </style>
 </head>
@@ -91,7 +93,8 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">总消费额:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="consumption" lay-verify="required" class="layui-input" disabled>
+                                    <input type="text" id="consumption" lay-verify="required" class="layui-input"
+                                        disabled>
                                 </div>
                             </div>
                         </form>
@@ -123,7 +126,8 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">地址:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="address" lay-verify="required" class="layui-input high-layui-input" disabled>
+                                    <input type="text" id="address" lay-verify="required"
+                                        class="layui-input high-layui-input" disabled>
                                 </div>
                             </div>
 
@@ -153,7 +157,8 @@
                                         <th lay-data="{field:'amountMoney', width:100}">订单金额</th>
                                         <th lay-data="{field:'content', width:100}">订单内容</th>
                                         <th lay-data="{field:'completionStatus', width:100}">订单状态</th>
-                                        <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作</th>
+                                        <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作
+                                        </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -162,7 +167,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
 
 
 
@@ -173,13 +178,13 @@
         <!-- 引入jQuery和Bootstrap的JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        
+
         <!-- 表格中的按钮 -->
         <script type="text/html" id="bar">
             <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="click">查看</button>
         </script>
-        
-        
+
+
         <script>
             layui.use(['form', 'laydate'], function () {
                 var form = layui.form;
@@ -190,7 +195,7 @@
 
             // 网页加载后渲染订单表格和加载信息
             $(document).ready(function () {
-                renderOrderTable(table,customerID);
+                renderOrderTable(table, customerID);
                 loadCustomerInfo(customerID);
             });
 
@@ -198,7 +203,7 @@
             function loadCustomerInfo(customerID) {
                 $.ajax({
                     type: "GET",
-                    url: "http://localhost:8080/getcustomerinfo/" + customerID,
+                    url: "http://localhost:8080/employee/getcustomerinfo/" + customerID,
                     success: function (response) {
                         $("#userID").val(response.id);
                         $("#userName").val(response.username);
