@@ -23,13 +23,15 @@ create table customer(
 ```  
 3. 创建订单表
 ```sql
+drop table  if EXISTS orders;
 create table orders(
 	id int primary key auto_increment,
     order_time timestamp not null,
     amount_money decimal(10,2) default 0,
     completion_status tinyint not null,
     consumer_id char(20) not null,
-    foreign key (consumer_id) references customer(id)
+    foreign key (consumer_id) references customer(id),
+    notes varchar(100)
 );
 ```  
 4. 产品表
