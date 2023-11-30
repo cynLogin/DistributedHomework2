@@ -1,11 +1,12 @@
 spring:
   datasource:
-    name: xxxx
-    url: jdbc:mysql://localhost:3306/xxxx?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublickeyRetrieval=true&serverTimezone=UTC
+    name: product_customer_management
+    url: jdbc:mysql://localhost:3306/product_customer_management?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublickeyRetrieval=true&serverTimezone=UTC
     username: root
-    password:
+    password: S10wj25.
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.destributedhomework2.bean
+  config-location: classpath:mybatis-config.xml
