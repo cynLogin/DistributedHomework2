@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 public class OrdersController {
@@ -17,5 +18,13 @@ public class OrdersController {
     @RequestMapping(value = "/employee/orderDetail/{orderID}",method = RequestMethod.GET)
     public OrdersBean loadById(@PathVariable String orderID){
         return ordersService.getById(orderID);
+    }
+    @RequestMapping(value = "/employee/order/bycustomerid/{customerID}",method = RequestMethod.GET)
+    public List<OrdersBean> loadByCustomerId(@PathVariable String customerID){
+        return ordersService.getAllByCustomerId(customerID);
+    }
+    @RequestMapping(value = "/employee/createOrder",method = RequestMethod.POST)
+    public String addOneOrder(double amountMoney,int completionStatus,String consumerId,String notes){
+        return ordersService.addOneOrder(amountMoney,completionStatus,consumerId,notes);
     }
 }

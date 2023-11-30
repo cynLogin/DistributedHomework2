@@ -5,4 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 public interface CustomerMapper {
     CustomerBean getById(String id);
+    CustomerBean getByNamePhone(String name,String phoneNumber);
 }

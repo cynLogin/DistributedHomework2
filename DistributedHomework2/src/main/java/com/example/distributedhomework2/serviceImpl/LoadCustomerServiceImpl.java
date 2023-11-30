@@ -13,4 +13,7 @@ public class LoadCustomerServiceImpl implements LoadCustomerService {
     public CustomerBean load(String id){
         return customerMapper.getById(id);
     }
+    public CustomerBean loadByNamePhone(String name,String phoneNumber){
+        return customerMapper.getByNamePhone(name,phoneNumber);
+    }
 }

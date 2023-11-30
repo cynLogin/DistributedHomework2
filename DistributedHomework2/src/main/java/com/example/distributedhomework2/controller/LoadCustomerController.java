@@ -17,4 +17,8 @@ public class LoadCustomerController {
     public CustomerBean load(@PathVariable String customerID){
         return loadCustomerService.load(customerID);
     }
+    @RequestMapping(value = "/employee/querycustomer",method = RequestMethod.POST)
+    public CustomerBean loadByNamePhone(String customerName,String customerPhone ){
+        return loadCustomerService.loadByNamePhone(customerName,customerPhone);
+    }
 }

@@ -5,4 +5,7 @@
     <select id="getById" resultType="com.example.distributedhomework2.bean.CustomerBean">
         SELECT * FROM customer where id =#{id}
     </select>
+    <select id="getByNamePhone" resultType="com.example.distributedhomework2.bean.CustomerBean">
+        SELECT * from customer where username like CONCAT("%","#{name}","%") AND CONCAT("%","#{phoneNumber}","%")
+    </select>
 </mapper>
