@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>客户详情页</title>
+    <title>产品管理页</title>
     <!-- 引入layui的CSS文件 -->
     <link rel="stylesheet" href="/layui/css/layui.css">
     <link rel="stylesheet" href="/static/layui/css/layui.css">
@@ -50,7 +50,7 @@
                     <p>
                         <br>
                         <br>
-                        <br>
+                        <br>        
                     </p>
                     <div class="layui-card-header custom-header" th:text="${userName+',欢迎来到用户信息界面!'}">
                     </div>
@@ -77,7 +77,7 @@
                     <div class="layui-card-body">
                         <div class="layui-container">
                             <!-- 这里设置display: none 是避免多余的表头显示 -->
-                            <table class="layui-table" lay-filter="productTable" id="orderTable" style="display: none;">
+                            <table class="layui-table" lay-filter="productTable" id="orderTable" >
                                 <thead>
                                     <tr>
                                         <th lay-data="{field:'id', width:100}">产品编号</th>
@@ -105,25 +105,117 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header">添加新产品</div>
+                    <div class="layui-card-header custom-header layui-edge-right">查询产品</div>
                     <div class="layui-card-body">
                         <form class="layui-form">
                             <div class="layui-form-item">
-                                <label class="layui-form-label">ID:</label>
+                                <p>
+                                <label class="layui-form-label">产品名称:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="productID" lay-verify="required" class="layui-input" disabled>
+                                    <input type="text" id="queryName" lay-verify="required" class="layui-input" placeholder="输入要查询的产品名称">
                                 </div>
+                                <button class="layui-btn " id="queryBtn">查询</button>
+                                </p>
                             </div>
                             <div class="layui-form-item">
-                                <label class="layui-form-label">名称:</label>
+                                <label class="layui-form-label">ID:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="productName" lay-verify="required" class="layui-input" disabled>
+                                    <input type="text" id="queryID" lay-verify="required" class="layui-input" placeholder="待查询" disabled>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">单价:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="unitPrice" lay-verify="required" class="layui-input" disabled>
+                                    <input type="text" id="queryPrice" lay-verify="required" class="layui-input" placeholder="待查询" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">库存:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="queryInventory" lay-verify="required" class="layui-input" placeholder="待查询" disabled>
+                                </div>
+                            </div>
+                            
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header ">修改产品</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <p>
+                                <label class="layui-form-label">产品名称:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="newName" lay-verify="required" class="layui-input" placeholder="输入新的产品名称">
+                                </div>
+                                <button class="layui-btn " id="modifyNameBtn">修改</button>
+                                </p>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">单价:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="newPrice" lay-verify="required" class="layui-input" placeholder="输入新的单价">
+                                </div>
+                                <button class="layui-btn " id="modifyPriceBtn">修改</button>
+                                
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">库存:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="newInventory" lay-verify="required" class="layui-input" placeholder="输入新的库存">
+                                </div>
+                                <button class="layui-btn " id="modifyInventoryBtn">修改</button>
+                            </div>
+                            <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn">删除该产品</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <!-- 客户信息左侧部分 -->
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </p>
+                    <div class="layui-card-header custom-header layui-edge-right">添加新产品</div>
+                    <div class="layui-card-body">
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">产品编号:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="addGender" lay-verify="required" class="layui-input" placeholder="输入产品编号">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">产品名称:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="addName" lay-verify="required" class="layui-input" placeholder="输入产品名称">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">产品单价:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="addPhone" lay-verify="required" class="layui-input" placeholder="输入产品单价">
                                 </div>
                             </div>
                             
