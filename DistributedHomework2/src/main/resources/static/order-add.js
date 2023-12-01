@@ -108,7 +108,7 @@ function renderOrderContentTable(table) {
         }
     });
 }
-function submitOrder(){
+function addOrder(){
     let customerName = $("#customerName").val();
     let orderRemark = $("#orderRemark").val();
     let totalPrice=$("#totalPrice").val();
