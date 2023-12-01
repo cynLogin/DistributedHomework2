@@ -72,7 +72,7 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header">订单信息</div>
+                    <div class="layui-card-header custom-header layui-edge-right">订单信息</div>
                     <div class="layui-card-body">
                         <form class="layui-form">
                             <div class="layui-form-item">
@@ -174,8 +174,8 @@
                                             <th lay-data="{field:'id', width:100}">产品编号</th>
                                             <th lay-data="{field:'productName', width:100}">产品名称</th>
                                             <th lay-data="{field:'unitPrice', width:100}">单价</th>
-                                            <th lay-data="{field:'inventoryNum', width:100}">数量</th>
-                                            <th lay-data="{field:'inventoryNum', width:100}">金额</th>
+                                            <th lay-data="{field:'quantity', width:100}">数量</th>
+                                            <th lay-data="{field:'price', width:100}">金额</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -194,7 +194,7 @@
                             <br>
                             <br>
                         </p>
-                        <div class="layui-card-header custom-header">更新订单状态</div>
+                        <div class="layui-card-header custom-header layui-edge-right">更新订单状态</div>
                         <div class="layui-card-body">
                             <form class="layui-form">
 
@@ -212,6 +212,22 @@
                     </div>
                 </div>
             </div>
+            <div class="layui-row">
+                <!-- 客户信息左侧部分 -->
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <p>
+                            <br>
+                            <br>
+
+                        </p>
+                        <div class="layui-card-header custom-header layui-edge-right">删除订单</div>
+                        <div class="layui-card-body">
+                            <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn">删除该订单</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -221,7 +237,8 @@
             <!-- 引入layui的JS文件 -->
             <script src="/layui/layui.js"></script>
             <script src="/static/layui/layui.js"></script>
-
+            <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
             <!-- 引入jQuery和Bootstrap的JavaScript -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -233,24 +250,27 @@
                     var laydate = layui.laydate;
                 });
 
-                var orderID = url.match(/\/order\/(\d+)$/)[1];
+                //var orderID = url.match(/\/order\/(\d+)$/)[1];
 
                 // 网页加载后渲染订单表格和加载信息
                 $(document).ready(function () {
-                    loadCustomerInfo(orderID);
+                    loadOrderInfo(orderID);
                 });
 
                 //加载客户信息
-                function loadCustomerInfo(orderID,customerID) {
+                function loadOrderInfo(orderID,customerID) {
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost:8080/employee/getorderinfo/" + orderID,
+                        url: "http://localhost:8080/getorderinfo/" + orderID,
                         success: function (response) {
                             $("#orderID").val(response.id);
                             $("#price").val(response.amountMoney);
                             $("#date").val(response.orderTime);
                             $("#remark").val(response.remark);
                             $("#content").val(response.content);
+                            // 产品列表
+                            let data=response.content;
+                            renderOrderContentTable(table,data);
                             customerID=response.consumerId;
                         },
                         error: function (error) {
@@ -259,7 +279,7 @@
                     });
                     $.ajax({
                         type: "GET",
-                        url: "http://localhost:8080/employee/getcustomerinfo/" + customerID,
+                        url: "http://localhost:8080/getcustomerinfo/" + customerID,
                         success: function (response) {
                             $("#userID").val(response.id);
                             $("#userName").val(response.username);
@@ -267,6 +287,7 @@
                             $("#phone").val(response.phoneNumber);
                             $("#consumption").val(response.totalConsumption);
                             $("#address").val(response.address);
+                            
                         },
                         error: function (error) {
                             console.log("Error:" + error);
@@ -275,14 +296,14 @@
                 }
                 // 更新按钮
                 $("#upgradeBtn").click(function () {
-                    
                     let status = $("#newStatus").val();
                     let formData={
-                        "status":status
+                        "status":status,
+                        "orderID":orderID
                     }
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost:8080/employee/updateorderstatus/" + orderID,
+                        url: "http://localhost:8080/updateorderstatus",
                         data: JSON.stringify(formData),
                         contentType: "application/json;charset=utf-8", 
                         success: function (response) {
@@ -294,7 +315,28 @@
                         }
                     });
                 });
-
+                $("#deleteBtn").click(function () {
+                    let formData={
+                        "orderID":orderID
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/deleteorder",
+                        data: JSON.stringify(formData),
+                        contentType: "application/json;charset=utf-8", 
+                        success: function (response) {
+                            if(response=="success"){
+                                alert("删除成功");
+                                window.history.back();
+                            }else{
+                                alert("删除失败");
+                            }
+                        },
+                        error: function (error) {
+                            console.log("Error:" + error);
+                        }
+                    });
+                });
                 // 返回
                 $("#backBtn").click(function () {
                     window.history.back();

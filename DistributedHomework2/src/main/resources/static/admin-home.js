@@ -28,7 +28,7 @@ function renderOrderData(table) {
                     // 查看订单详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/admin/orderDetail/" + selectedData.id;
+                    window.location.href = "http://localhost:8080/orderDetail/" + selectedData.id;
                 } 
             });
         },
@@ -69,7 +69,7 @@ function renderCustomerData(table) {
                     // 查看订单详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/admin/customerDetail/" + selectedData.id;
+                    window.location.href = "http://localhost:8080/customerDetail/" + selectedData.id;
                 } 
             });
         },

@@ -174,7 +174,7 @@
         function loadCustomerInfo(customerID) {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:8080/employee/getcustomerinfo/" + customerID,
+                url: "http://localhost:8080/getcustomerinfo/" + customerID,
                 success: function (response) {
                     $("#userID").val(response.id);
                     $("#userName").val(response.username);
@@ -206,7 +206,7 @@
             }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/employee/modifycustomer",
+                url: "http://localhost:8080/modifycustomer",
                 data: JSON.stringify(formData),
                 contentType: "application/json;charset=utf-8",
                 success: function (response) {
@@ -230,7 +230,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/employee/modifycustomer/delete",
+                url: "http://localhost:8080/modifycustomer/delete",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(formData), //将表单转换为JSON格式
                 success: function (response) {

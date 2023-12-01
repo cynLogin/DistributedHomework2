@@ -113,7 +113,7 @@
                                 <label class="layui-form-label">产品名称:</label>
                                 <div class="layui-input-inline">
                                     <input type="text" id="queryName" lay-verify="required" class="layui-input"
-                                        placeholder="请输入要查询的产品名称" disabled>
+                                        placeholder="请输入要查询的产品名称" >
                                 </div>
                                 <button class="layui-btn custom-button-left" id="queryBtn" >查询</button>
                             </div>
@@ -156,7 +156,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">产品编号:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="addGender" lay-verify="required" class="layui-input" placeholder="输入产品编号">
+                                    <input type="text" id="addID" lay-verify="required" class="layui-input" placeholder="输入产品编号">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -168,7 +168,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">产品单价:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="addPhone" lay-verify="required" class="layui-input" placeholder="输入产品单价">
+                                    <input type="text" id="addPrice" lay-verify="required" class="layui-input" placeholder="输入产品单价">
                                 </div>
                             </div>
                             
@@ -187,40 +187,43 @@
         <!-- 引入layui的JS文件 -->
         <script src="/layui/layui.js"></script>
         <script src="/static/layui/layui.js"></script>
-
+        <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
         <!-- 引入jQuery和Bootstrap的JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         
         <!-- 表格中的按钮 -->
         <script type="text/html" id="bar">
-            <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="add">添加</button>
-            <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="delete">删除</button>
+            <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="click">查看</button>
         </script>
         
         
         <script>
-            layui.use(['form', 'laydate'], function () {
+            layui.use(['form', 'laydate','table'], function () {
                 var form = layui.form;
                 var laydate = layui.laydate;
+                var table = layui.table;
             });
 
             // 网页加载后渲染订单表格和加载信息
             $(document).ready(function () {
-                renderProductTable(table);
+                renderProductData(table);
             });
             $("#addNewBtn").click(function () {
-                var productID = $("#productID").val();
-                var productName = $("#productName").val();
-                var unitPrice = $("#unitPrice").val();
+                let productID = $("#addID").val();
+                let productName = $("#addName").val();
+                let unitPrice = $("#addPrice").val();
+                let formData={
+                    "id":productID,
+                    "productName":productName,
+                    "unitPrice":unitPrice
+                }
                 $.ajax({
-                    url: "http://localhost:8080/employee/addnewproduct",
+                    url: "http://localhost:8080/admin/addproduct",
                     type: "POST",
-                    data: {
-                        "productID": productID,
-                        "productName": productName,
-                        "unitPrice": unitPrice,
-                    },
+                    data: JSON.stringify(formData),
+                    contentType: "application/json;charset=utf-8",
                     success: function (data) {
                         if (data == "success") {
                             alert("添加成功");
@@ -234,7 +237,10 @@
                     }
                 });
             });
-
+            $("#queryBtn").click(function () {
+                let queryName=$("#queryName").val();
+                renderQueryProductData(table, queryName)
+            });
             // 返回
             $("#backBtn").click(function () {
                 window.history.back();

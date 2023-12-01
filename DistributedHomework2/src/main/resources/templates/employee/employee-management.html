@@ -217,27 +217,30 @@
         
         
         <script>
-            layui.use(['form', 'laydate'], function () {
+            layui.use(['form', 'laydate','table'], function () {
                 var form = layui.form;
                 var laydate = layui.laydate;
+                var table = layui.table;
             });
 
             // 网页加载后渲染订单表格和加载信息
             $(document).ready(function () {
-                renderProductTable(table);
+                renderEmployeeTable(table);
             });
             $("#addNewBtn").click(function () {
-                var productID = $("#productID").val();
-                var productName = $("#productName").val();
-                var unitPrice = $("#unitPrice").val();
+                let addName=$("#addName").val();
+                let addPhone=$("#addPhone").val();
+                let addGender=document.querySelector('input[name="gender"]:checked').value;
+                let formData={
+                    addName:addName,
+                    addPhone:addPhone,
+                    addGender:addGender
+                }
                 $.ajax({
-                    url: "http://localhost:8080/employee/addnewproduct",
+                    url: "http://localhost:8080/admin/addemployee",
                     type: "POST",
-                    data: {
-                        "productID": productID,
-                        "productName": productName,
-                        "unitPrice": unitPrice,
-                    },
+                    data: JSON.stringify(formData),
+                    contentType: "application/json;charset=utf-8",
                     success: function (data) {
                         if (data == "success") {
                             alert("添加成功");
@@ -251,7 +254,11 @@
                     }
                 });
             });
-
+            $("#queryBtn").click(function () {
+                let queryName=$("#queryName").val();
+                let queryPhone=$("#queryPhone").val();
+                renderEmployeeQueryTable(table,queryName,queryPhone) 
+            });
             // 返回
             $("#backBtn").click(function () {
                 window.history.back();

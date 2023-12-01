@@ -98,7 +98,7 @@
                     <div class="layui-card-body">
                         <div class="layui-container">
                             <!-- 这里设置display: none 是避免多余的表头显示 -->
-                            <table class="layui-table" lay-filter="customerTable" id="customerTable" >
+                            <table class="layui-table" lay-filter="queryCustomerTable" id="queryCustomerTable" >
                                 <thead>
                                     <tr>
                                         <th lay-data="{field:'id', width:100}">客户编号</th>
@@ -192,7 +192,10 @@
         </div>
     </div>
 
-
+    <!-- 表格中的按钮 -->
+    <script type="text/html" id="bar">
+        <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="click">查看</button>
+    </script>
 
 
 
@@ -212,7 +215,18 @@
                 format: 'yyyy-MM-dd'
             });
 
-
+        });
+        var employeeID = url.match(/\/home\/(\d+)$/)[1];
+        $(document).ready(function () {
+            renderQueryCustomerTable(table,"","");
+            enderCustomerFollowTable(table);
+            renderOrderTable(table)
+        });
+        $("#addOrderBtn").click(function () {
+            window.location.href = "http://localhost:8080/employee/addorder";
+        });
+        $("#userInfoBtn").click(function () {
+            window.location.href = "http://localhost:8080/employeeinfo/"+emplyeeID;
         });
         $("#queryBtn").click(function () {
             let name = $("#queryName").val();
@@ -221,60 +235,10 @@
                 alert("请输入查询信息");
                 return;
             }
-            let formData = {
-                customerName: name,
-                customerPhone: phone
-            }
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/employee/querycustomer",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData),
-                success: function (response) {
-                    if (response != "fail") {
-                        alert("查询成功");
-                        let customerID = response.id;
-                        window.location.href = "http://localhost:8080/employee/customer/" + customerID;
-                    } else {
-                        alert("查询失败");
-                    }
-                },
-                error: function (error) {
-                    console.log("Error:" + error);
-                }
-            });
+            renderQueryCustomerTable(table,name,phone);
         });
 
-        $("#createOrderBtn").click(function () {
-            let customerName = $("#customerName").val();
-            let price = $("#price").val();
-            let orderContent = $("#orderContent").val();
-            if (customerName == "" || price == "" || orderContent == "") {
-                alert("请输入完整信息");
-                return;
-            }
-            let formData = {
-                customerName: customerName,
-                price: price,
-                orderContent: orderContent
-            }
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/employee/createOrder",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData),
-                success: function (response) {
-                    if (response == "success") {
-                        alert("订单创建成功");
-                    } else {
-                        alert("订单创建失败");
-                    }
-                },
-                error: function (error) {
-                    console.log("Error:" + error);
-                }
-            });
-        });
+        
     </script>
 </body>
 
