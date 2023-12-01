@@ -5,4 +5,10 @@
     <select id="getById" resultType="com.example.distributedhomework2.bean.OrdersBean">
         SELECT * FROM orders where id=#{id}
     </select>
+    <select id="getAllByCustomerId" resultType="com.example.distributedhomework2.bean.OrdersBean">
+        SELECT * FROM orders where consumer_id=#{id}
+    </select>
+    <insert id="addOneOrder" >
+        insert into orders(amount_money,conpletion_status,consumer_id,notes) values (#{amountMoney},#{completionStatus},#{consumerId},#{notes})
+    </insert>
 </mapper>
