@@ -76,20 +76,21 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header layui-edge-right">客户信息</div>
+                    <div class="layui-card-header custom-header layui-edge-right">员工信息</div>
                     <div class="layui-card-body">
                         <form class="layui-form">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">ID:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="userID" lay-verify="required" class="layui-input " disabled>
+                                    <input type="text" id="id" lay-verify="required" class="layui-input"
+                                        placeholder="待查询" disabled>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <p>
                                     <label class="layui-form-label">姓名:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="userName" lay-verify="required" class="layui-input">
+                                    <input type="text" id="name" lay-verify="required" class="layui-input">
                                 </div>
                                 </p>
                             </div>
@@ -106,22 +107,11 @@
                                     <input type="text" id="phone" lay-verify="required" class="layui-input">
                                 </div>
                             </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">消费额:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="consumption" lay-verify="required" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">地址:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="address" lay-verify="required"
-                                        class="layui-input high-layui-input ">
-                                </div>
-                            </div>
+
                         </form>
-                        <button class="layui-btn custom-button-left " id="modifyBtn">修改信息</button>
-                        <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn" onclick="confirmAction()">删除该客户</button>
+                        <button class="layui-btn custom-button-left " id="modifyBtn">修改员工信息</button>
+                        <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn"
+                            onclick="confirmAction()">删除该员工</button>
                     </div>
                 </div>
             </div>
@@ -134,8 +124,12 @@
 
 
     <!-- 引入layui的JS文件 -->
+    <script src="/layui/layui.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <!-- 引入layui的JS文件 -->
     <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
+
     <!-- 引入jQuery和Bootstrap的JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -143,13 +137,10 @@
 
 
     <script>
-        layui.use(['form', 'laydate', 'layer'], function () {
-            var layer = layui.layer;
+        layui.use(['form', 'laydate'], function () {
+            var form = layui.form;
+            var laydate = layui.laydate;
         });
-
-        // var customerID = url.match(/\/modifycustomer\/(\d+)$/)[1];
-
-        //确认删除
         function confirmAction() {
             layer.confirm('您确定要删除该客户吗？', {
                 btn: ['确定', '取消'],
@@ -165,23 +156,24 @@
                 layer.closeAll(); // 关闭确认窗口
             });
         }
+
+        // var employeeID = url.match(/\/modifycustomer\/(\d+)$/)[1];
         //初始化页面
         $(document).ready(function () {
             console.log("ready");
-            loadCustomerInfo(customerID);
+            loadInfo(employeeIDemployeeID);
         });
 
-        function loadCustomerInfo(customerID) {
+        function loadInfo() {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:8080/employee/getcustomerinfo/" + customerID,
+                url: "http://localhost:8080/employee/getemployeeinfo/" + employeeID,
                 success: function (response) {
-                    $("#userID").val(response.id);
-                    $("#userName").val(response.username);
+                    $("#id").val(response.id);
+                    $("#name").val(response.username);
                     $("#gender").val(response.gender);
                     $("#phone").val(response.phoneNumber);
-                    $("#consumption").val(response.totalConsumption);
-                    $("#address").val(response.address);
+
                 },
                 error: function (error) {
                     console.log("Error:" + error);
@@ -191,28 +183,24 @@
 
         $("#modifyBtn").click(function (event) {
             event.preventDefault();
-            let newName = $("#userName").val();
+            let newName = $("#name").val();
             let newGender = $("#gender").val();
             let newPhone = $("#phone").val();
-            let newConsumption = $("#consumption").val();
-            let newAddress = $("#address").val();
             let formData = {
-                id: customerID,
+                id: employeeID,
                 newName: newName,
                 newGender: newGender,
                 newPhone: newPhone,
-                newConsumption: newConsumption,
-                newAddress: newAddress
             }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/employee/modifycustomer",
+                url: "http://localhost:8080/employee/modifyemployee",
                 data: JSON.stringify(formData),
                 contentType: "application/json;charset=utf-8",
                 success: function (response) {
                     if (response == "success") {
                         alert("修改成功");
-                        loadCustomerInfo(customerID);
+                        loadInfo()
                     } else {
                         alert("修改失败");
                     }
@@ -226,11 +214,11 @@
         function deleteWorker(event) {
             event.preventDefault();
             let formData = {
-                id: customerID
+                id: employeeID
             };
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/employee/modifycustomer/delete",
+                url: "http://localhost:8080/employee/modifyemployee/delete",
                 contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(formData), //将表单转换为JSON格式
                 success: function (response) {

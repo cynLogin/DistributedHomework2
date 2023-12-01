@@ -25,16 +25,97 @@ YQYJin
 - 添加 */resource/mysql/database.sql* 作为构建数据库的sql文件,数据库操作都通过向该文件
 中添加sql代码执行,以保证数据库一致性
 
-> 2023.11.29 YQY
 
-接口说明:
 
-- /employee/getcustomerinfo/{customerID},GET:返回客户信息,字段名id,username,gender,phoneNumber,totalConsumption,address
-- /employee/order/bycustomerid/{customerID},GET: 返回订单列表,字段:id,orderTime,amountMoney,completionStatus,content(订单内容)
-- /employee/orderDetail/{orderID},GET:返回根据id查询到的订单信息
-- /employee/createOrder,POST:创建新订单
-- /employee/querycustomer,POST: 发送数据{customerName:name,customerPhone:phone},返回到的客户信息
+> 2023.12.1 YQY
 
-- /employee/addnewproduct,POST:创建新产品,报文内容:{productID,productName,unitPrice},创建成功返回"success"
+## customer-detail界面
 
-- /employee/allProduct,GET:获取全部产品信息,返回报文结构应为列表,包括信息:{id,productName,unitPrice,inventoryNum}
+- "http://localhost:8080/employee/getcustomerinfo/" + customerID,GET
+
+​		根据客户ID返回客户信息
+
+```javascript
+$.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/employee/getcustomerinfo/" + customerID,
+                    success: function (response) {
+                        $("#userID").val(response.id);
+                        $("#userName").val(response.username);
+                        $("#gender").val(response.gender);
+                        $("#phone").val(response.phoneNumber);
+                        $("#consumption").val(response.totalConsumption);
+                        $("#address").val(response.address);
+                    },
+                    error: function (error) {
+                        console.log("Error:" + error);
+                    }
+                });
+```
+
+- http://localhost:8080/employee/modifycustomer/"+customerID 
+
+​		跳转到修改客户信息页面
+
+## cusotmer-managemetn界面
+
+- "http://localhost:8080/employee/getcustomerinfo/" + customerID,GET
+
+​		同上
+
+- "http://localhost:8080/employee/modifycustomer",POST
+
+​		根据发送的报文信息修改客户信息,报文内容如下
+
+```js
+let formData={
+                    id:customerID,
+                    newName:newName,
+                    newGender:newGender,
+                    newPhone:newPhone,
+                    newConsumption:newConsumption,
+                    newAddress:newAddress
+                }
+```
+
+- http://localhost:8080/employee/modifycustomer/delete, POST
+
+  删除根据客户ID删除客户,报文内容:
+
+```js
+let formData = {
+                    id: customerID
+                };
+```
+
+## emplyee-control.html
+
+- http://localhost:8080/employee/getemployeeinfo/" + employeeID,GET
+
+​	根据员工ID获取员工信息
+
+- "http://localhost:8080/employee/modifyemployee",POST 
+
+  根据员工ID修改员工信息,员工ID在报文中,报文数据如下:
+
+```js
+let formData = {
+                id: employeeID,
+                newName: newName,
+                newGender: newGender,
+                newPhone: newPhone,
+            }
+```
+
+- "http://localhost:8080/employee/modifyemployee/delete", POST
+
+​		根据ID删除员工,员工ID在报文中
+
+```js
+let formData = {
+                id: employeeID
+            };
+```
+
+## emplyee-home.html
+

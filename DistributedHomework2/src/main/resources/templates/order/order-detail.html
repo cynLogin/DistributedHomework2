@@ -99,13 +99,7 @@
                                     <input type="text" id="remark" lay-verify="required" class="layui-input" disabled>
                                 </div>
                             </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">订单内容:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="content" lay-verify="required"
-                                        class="layui-input high-layui-input" disabled>
-                                </div>
-                            </div>
+
                             <div class="layui-form-item">
                                 <label class="layui-form-label">订单状态:</label>
                                 <div class="layui-input-inline">
@@ -163,6 +157,34 @@
                 </div>
             </div>
             <div class="layui-row">
+                <!-- 订单信息 -->
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <p>
+    
+                        </p>
+                        <div class="layui-card-header custom-header layui-edge-right">订单内容</div>
+    
+                        <div class="layui-card-body">
+                            <div class="layui-container">
+                                <!-- 这里设置display: none 是避免多余的表头显示 -->
+                                <table class="layui-table" lay-filter="orderContentTable" id="orderContentTable" >
+                                    <thead>
+                                        <tr>
+                                            <th lay-data="{field:'id', width:100}">产品编号</th>
+                                            <th lay-data="{field:'productName', width:100}">产品名称</th>
+                                            <th lay-data="{field:'unitPrice', width:100}">单价</th>
+                                            <th lay-data="{field:'inventoryNum', width:100}">数量</th>
+                                            <th lay-data="{field:'inventoryNum', width:100}">金额</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row">
                 <!-- 客户信息左侧部分 -->
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -188,52 +210,6 @@
                             <button class="layui-btn custom-button-left" id="upgradeBtn">更新</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <p>
-                    <br>
-                    <br>
-                    <br>
-                    
-                </p>
-                <div class="layui-card-header custom-header ">修改订单信息</div>
-                <div class="layui-card-body">
-                    <form class="layui-form">
-                        <div class="layui-form-item">
-                            <p>
-                            <label class="layui-form-label">订单总价:</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="newPrice" lay-verify="required" class="layui-input" placeholder="输入新的订单总价">
-                            </div>
-
-                            </p>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">下单时间:</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="newDate" lay-verify="required" class="layui-input" placeholder="输入新的下单时间">
-                            </div>
-                            
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">订单备注:</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="newRemark" lay-verify="required" class="layui-input" placeholder="输入新的订单备注">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">订单内容:</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="newContent" lay-verify="required" class="layui-input high-layui-input" placeholder="输入新的订单内容">
-                            </div>
-                        </div>
-                        <button class="layui-btn custom-button-left " id="modifyBtn">修改订单信息</button>
-                        <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn">删除该订单</button>
-                    </form>
-                    
                 </div>
             </div>
         </div>

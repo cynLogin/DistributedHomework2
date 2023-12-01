@@ -22,7 +22,6 @@ function renderOrderData(table) {
                 ]],
                 page: true
             });
-
             //监听行工具事件
             table.on('tool(orderInfoTable)', function (obj) {
                 if (obj.event == 'click') {
