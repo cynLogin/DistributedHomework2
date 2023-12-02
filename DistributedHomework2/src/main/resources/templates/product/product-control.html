@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>修改客户信息</title>
+    <title>修改产品信息</title>
     <!-- 引入layui的CSS文件 -->
     <link rel="stylesheet" href="/layui/css/layui.css">
     <link rel="stylesheet" href="/static/layui/css/layui.css">
@@ -144,7 +144,7 @@
             var form = layui.form;
             var laydate = layui.laydate;
         });
-        // var productID = url.match(/\/product\/(\d+)$/)[1];
+        var productID = url.match(/\/productModify\/(\d+)$/)[1];
         //确认删除
         function confirmAction() {
             layer.confirm('您确定要删除该产品吗？', {

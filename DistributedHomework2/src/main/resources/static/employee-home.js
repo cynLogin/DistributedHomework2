@@ -1,8 +1,9 @@
-function renderQueryCustomerTable(table,queryName,queryPhone) {
+function renderQueryCustomerTable(table,queryName,queryPhone,employeeID) {
     let queryCustomerInfoData;
     let queryData = {
         "userName": queryName,
-        "phoneNumber": queryPhone
+        "phoneNumber": queryPhone,
+        "employeeID": employeeID
     };
     $.ajax({
         type: "POST",
@@ -43,11 +44,16 @@ function renderQueryCustomerTable(table,queryName,queryPhone) {
         }
     });
 }
-function renderCustomerFollowTable(table) {
+function renderCustomerFollowTable(table,employeeID) {
     let queryCustomerInfoData;
+    let formData={
+        "employeeID":employeeID
+    }
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://localhost:8080/employee/getcustomer",
+        data: JSON.stringify(formData),
+        contentType: "application/json;charset=utf-8",
         success: function (response) {
             queryCustomerInfoData = response;
             // 渲染表格

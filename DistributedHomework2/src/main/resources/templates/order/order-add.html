@@ -231,7 +231,7 @@
                 var table = layui.table;
                 var layer = layui.layer;
             });
-
+            var employeeID = url.match(/\/addorder\/(\d+)$/)[1];
             // 网页加载后渲染订单表格和加载信息
             $(document).ready(function () {
                 renderProductTable(table, layer, "")
@@ -250,7 +250,7 @@
                     location.reload();
                 }
                 else{
-                    alert("创建订单失败");
+                    alert("创建订单失败:"+response);
                 }
             });
             // 返回

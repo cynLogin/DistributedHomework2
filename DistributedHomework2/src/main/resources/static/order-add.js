@@ -112,14 +112,27 @@ function addOrder(){
     let customerName = $("#customerName").val();
     let orderRemark = $("#orderRemark").val();
     let totalPrice=$("#totalPrice").val();
-
+    let requestOrderContent=[];
+    orderContent.forEach(function (product) {
+        let requestProduct={
+            "productId":product.id,
+            "quantity":product.quantity
+        };
+        requestOrderContent.push(requestProduct);
+    });
     
+    let formData={
+        "customerName":customerName,
+        "orderRemark":orderRemark,
+        "totalPrice":totalPrice,
+        "orderContent":requestOrderContent
+    };
 
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/addorder",
 
-        data: JSON.stringify(queryData),
+        data: JSON.stringify(formData),
         contentType: "application/json;charset=utf-8",
         success: function (response) {
             return response;

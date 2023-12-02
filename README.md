@@ -42,13 +42,13 @@ YQYJin
 
 - http://localhost:8080/employee/home/{ID} ; 员工主页(employee-home.html)
 - "http://localhost:8080/employeeinfo/"+emplyeeID; 员工信息修改页(employee-control.html)
-- "http://localhost:8080/admin/employeecontrol"; 员工管理页(employee-management.html)
+- "http://localhost:8080/admin/employeecontrol"+employeeID; 员工管理页(employee-management.html)
 
 
 
 - "http://localhost:8080/orderDetail/" + selectedData.id; 订单详情页(order-detail.html)
 
-- "http://localhost:8080/employee/addorder" ; 添加订单页(order-add.html)
+- "http://localhost:8080/employee/addorder"+{employeeID} ; 添加订单页(order-add.html)
 
   
 
@@ -56,7 +56,7 @@ YQYJin
 
 - "http://localhost:8080/admin/productModify/" + selectedData.id; 产品信息修改页(product-control.html)
 
-- 
+  
 
 ## customer-detail界面
 
@@ -146,14 +146,15 @@ let formData = {
 
 - http://localhost:8080/employee/querycustomer , POST
 
-  根据输入的姓名和电话查询客户,返回查询到的客户列表,注意姓名和用户都为""时返回所有客户
+  根据输入的姓名,电话和员工ID查询该员工的客户,返回查询到的客户列表,注意姓名和用户都为""时返回该员工所有客户
 
   发送报文和返回格式:
 
 ```js
 let queryData = {
         "userName": queryName,
-        "phoneNumber": queryPhone
+        "phoneNumber": queryPhone,
+        "employeeID": employeeID
     };
 
 cols: [[
@@ -165,15 +166,15 @@ cols: [[
                 ]],
 ```
 
-- "http://localhost:8080/customerDetail/" + selectedData.id 跳转连接
+- http://localhost:8080/employee/getcustomer ,POST
 
-​		跳转到用户详情页
-
-- http://localhost:8080/employee/getcustomer ,GET
-
-  返回所有用户,按最近下单时间排序,返回格式为:
+  返回该员工的,发送数据为员工ID,所有用户,按最近下单时间排序,返回格式为:
 
 ```js
+let formData={
+        "employeeID":employeeID
+    }
+
 cols: [[
                     { field: 'id', width: 100, title: '客户编号' },
                     { field: 'username', width: 100, title: '客户姓名' },
@@ -260,7 +261,24 @@ cols: [[
 
 ​		根据发送的数据创建订单,创建成功返回"succes",数据格式如下:
 
+​		包括客户姓名,订单备注,订单总金额,订单内容列表[{产品ID,数量}]
+
 ```js
+let requestOrderContent=[];
+    orderContent.forEach(function (product) {
+        let requestProduct={
+            "productId":product.id,
+            "quantity":product.quantity
+        };
+        requestOrderContent.push(requestProduct);
+    });
+    
+    let formData={
+        "customerName":customerName,
+        "orderRemark":orderRemark,
+        "totalPrice":totalPrice,
+        "orderContent":requestOrderContent
+    };
 ```
 
 ## order-detail 页面
@@ -372,5 +390,25 @@ cols: [[
                     { field: 'inventoryNum', width: 120, title: '库存数量' },
                     { fixed: 'right', width: 200, align: 'center', toolbar: '#bar', title: '操作' }
                 ]],
+```
+
+> 2023.12.2 YQY
+
+- http://localhost:8080/employee/addcustomer/ + employID ; 注册客户页(customer-add.html)
+
+
+
+- http://localhost:8080/employee/addcustomer POST
+
+​		根据发送的数据注册新客户,注册成功返回"success"
+
+```js
+let formData={
+                    username: name,
+                    gender: gender,
+                    phoneNumber: phone,
+                    address: address,
+                    employeeID: employeeID
+                }
 ```
 
