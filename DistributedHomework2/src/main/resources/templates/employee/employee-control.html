@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <title>修改员工信息</title>
     <!-- 引入layui的CSS文件 -->
-    <link rel="stylesheet" href="/layui/css/layui.css">
-    <link rel="stylesheet" href="/static/layui/css/layui.css">
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css">
     <style>
         /* 自定义样式 */
@@ -122,10 +121,6 @@
 
 
 
-
-    <!-- 引入layui的JS文件 -->
-    <script src="/layui/layui.js"></script>
-    <script src="/static/layui/layui.js"></script>
     <!-- 引入layui的JS文件 -->
     <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
@@ -169,6 +164,7 @@
                 type: "GET",
                 url: "http://localhost:8080/getemployeeinfo/" + employeeID,
                 success: function (response) {
+                    console.log("员工信息返回" + response);
                     $("#id").val(response.id);
                     $("#name").val(response.username);
                     $("#gender").val(response.gender);

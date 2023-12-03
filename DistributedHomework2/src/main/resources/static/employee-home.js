@@ -12,7 +12,7 @@ function renderQueryCustomerTable(table,queryName,queryPhone,employeeID) {
         contentType: "application/json;charset=utf-8",
         success: function (response) {
             queryCustomerInfoData = response;
-
+            console.log("查询客户返回:", queryCustomerInfoData);
             // 渲染表格
             table.render({
                 elem: '#queryCustomerTable',
@@ -56,6 +56,7 @@ function renderCustomerFollowTable(table,employeeID) {
         contentType: "application/json;charset=utf-8",
         success: function (response) {
             queryCustomerInfoData = response;
+            console.log("跟进客户返回:", queryCustomerInfoData);
             // 渲染表格
             table.render({
                 elem: '#customerFollowTable',

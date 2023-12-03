@@ -5,7 +5,7 @@ function renderProductData(table) {
         url: "http://localhost:8080/allProduct",
         success: function (response) {
             productData = response;
-
+            console.log("全部产品返回:", productData);
             // 渲染表格
             table.render({
                 elem: '#productTable',
@@ -47,6 +47,7 @@ function renderQueryProductData(table, queryName) {
         contentType: "application/json;charset=utf-8",
         success: function (response) {
             productInfo = response;
+            console.log("查询产品返回:", productInfo);
             // 渲染表格
             table.render({
                 elem: '#productQueryTable',

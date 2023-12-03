@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <title>订单详情页</title>
     <!-- 引入layui的CSS文件 -->
-    <link rel="stylesheet" href="/layui/css/layui.css">
-    <link rel="stylesheet" href="/static/layui/css/layui.css">
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/layui/2.5.7/css/layui.css">
     <style>
         /* 自定义样式 */
@@ -265,6 +264,7 @@
                         type: "GET",
                         url: "http://localhost:8080/getorderinfo/" + orderID,
                         success: function (response) {
+                            console.log("订单信息返回" + response);
                             $("#orderID").val(response.id);
                             $("#price").val(response.amountMoney);
                             $("#date").val(response.orderTime);
@@ -283,6 +283,7 @@
                         type: "GET",
                         url: "http://localhost:8080/getcustomerinfo/" + customerID,
                         success: function (response) {
+                            console.log("客户信息返回" + response);
                             $("#userID").val(response.id);
                             $("#userName").val(response.username);
                             $("#gender").val(response.gender);

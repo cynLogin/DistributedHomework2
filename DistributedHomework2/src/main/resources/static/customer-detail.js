@@ -5,7 +5,7 @@ function renderOrderData(table, customerId) {
         url: "http://localhost:8080/employee/order/bycustomerid/"+customerId,
         success: function (response) {
             orderInfoData = response;
-
+            console.log("客户返回:", orderInfoData);
             // 渲染表格
             table.render({
                 elem: '#orderInfoTable',

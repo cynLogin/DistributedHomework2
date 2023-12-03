@@ -5,7 +5,7 @@ function renderOrderData(table) {
         url: "http://localhost:8080/admin/order/all",
         success: function (response) {
             orderInfoData = response;
-
+            console.log("全部订单返回:", orderInfoData);
             // 渲染表格
             table.render({
                 elem: '#orderTable',
@@ -45,7 +45,7 @@ function renderCustomerData(table) {
         url: "http://localhost:8080/admin/customer/all",
         success: function (response) {
             customerInfoData = response;
-
+            console.log("全部客户返回:", customerInfoData);
             // 渲染表格
             table.render({
                 elem: '#orderTable',

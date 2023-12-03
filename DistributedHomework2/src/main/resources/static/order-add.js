@@ -14,6 +14,7 @@ function renderProductTable(table, layer, queryName) {
         contentType: "application/json;charset=utf-8",
         success: function (response) {
             productInfo = response;
+            console.log("查询产品返回:", productInfo);
             // 渲染表格
             table.render({
                 elem: '#productQueryTable',
@@ -95,7 +96,7 @@ function renderOrderContentTable(table) {
     table.on('tool(orderContentTable)', function (obj) {
         if (obj.event == 'delete') {
             let selectedData = obj.data;
-            console.log("要删除的产品", selectedData);
+            console.log("删除产品", selectedData);
             let deleteName = selectedData.productName;
             let deletedList = orderContent.filter(function (obj) {
                 return obj.productName !== deleteName;
