@@ -29,4 +29,8 @@ public class CustomerController {
     public String deleteOne(String id){
         return customerService.deleteOne(id);
     }
+    @RequestMapping(value = "/employee/getcustomer",method = RequestMethod.POST)
+    public CustomerBean load(String employeeID){
+        return customerService;
+    }
 }

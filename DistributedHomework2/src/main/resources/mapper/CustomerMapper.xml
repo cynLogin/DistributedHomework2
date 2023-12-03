@@ -23,4 +23,8 @@
         delete from customer
         where id=#{id}
     </delete>
+    <select id="getByEmployeeId" resultType="com.example.distributedhomework2.bean.CustomerBean">
+        select * from customer
+        where staff_id=#{id}
+    </select>
 </mapper>
