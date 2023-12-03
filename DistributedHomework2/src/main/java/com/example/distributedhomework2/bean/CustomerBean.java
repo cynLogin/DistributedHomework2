@@ -8,6 +8,15 @@ public class CustomerBean {
     private String address;
     private double totalConsumption;
     private String staffId;
+    private String sex;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public String getId() {
         return id;
