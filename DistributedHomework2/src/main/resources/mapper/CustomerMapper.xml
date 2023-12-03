@@ -11,11 +11,11 @@
     </select>
     <update id="change">
         UPDATE customer
-        SET phone_number=#{phoneNumber}
-            username=#{username}
-            password=#{password}
-            address=#{address}
-            total_consumption=#{totalConsumption}
+        SET phone_number=#{phoneNumber},
+            username=#{username},
+            password=#{password},
+            address=#{address},
+            total_consumption=#{totalConsumption},
             sex=#{sex}
         where id=#{id}
     </update>

@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 public class CustomerController {
     @Resource
     CustomerService customerService;
-    @RequestMapping(value = "/employee/getcustomerinfo/{customerID}",method = RequestMethod.GET)
+    @RequestMapping(value = "/getcustomerinfo/{customerID}",method = RequestMethod.GET)
     public CustomerBean load(@PathVariable String customerID){
         return customerService.load(customerID);
     }
@@ -28,9 +28,5 @@ public class CustomerController {
     @RequestMapping(value = "/modifycustomer/delete",method = RequestMethod.POST)
     public String deleteOne(String id){
         return customerService.deleteOne(id);
-    }
-    @RequestMapping(value = "/employee/getcustomer",method = RequestMethod.POST)
-    public CustomerBean load(String employeeID){
-        return customerService;
     }
 }
