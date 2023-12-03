@@ -55,7 +55,7 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎来到用户信息界面!'}">
+                    
                     </div>
                     <div class="layui-card-body layui-edge-right">
                         <button class="layui-btn " id="backBtn">返回</button>
@@ -151,12 +151,12 @@
                 layer.closeAll(); // 关闭确认窗口
             });
         }
-
-        var employeeID = url.match(/\/employeecontrol\/(\d+)$/)[1];
+        var url=window.location.href;
+        var employeeID = url.match(/\/employeeinfo\/(\d+)$/)[1];
         //初始化页面
         $(document).ready(function () {
             console.log("ready");
-            loadInfo(employeeIDemployeeID);
+            loadInfo(employeeID);
         });
 
         function loadInfo() {

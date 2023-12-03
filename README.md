@@ -42,7 +42,7 @@ YQYJin
 
 - http://localhost:8080/employee/home/{ID} ; 员工主页(employee-home.html)
 - "http://localhost:8080/employeeinfo/"+emplyeeID; 员工信息修改页(employee-control.html)
-- "http://localhost:8080/admin/employeecontrol"+employeeID; 员工管理页(employee-management.html)
+- "http://localhost:8080/admin/employeecontrol"; 员工管理页(employee-management.html)
 
 
 
@@ -412,3 +412,26 @@ let formData={
                 }
 ```
 
+# 测试
+
+> YQY
+
+## 测试不通过
+
+- http://localhost:8080/admin/employeecontrol
+
+​		解决: 删除路由中的{ID}
+
+- 
+
+## 测试通过
+
+- http://localhost:8080/admin/home/1 OK
+- http://localhost:8080/admin/productcontrol OK
+- http://localhost:8080/employee/home/1 OK
+- http://localhost:8080/employee/addorder/1 OK
+- http://localhost:8080/employeeinfo/1 OK
+- http://localhost:8080/customerDetail/1 OK
+- http://localhost:8080/customerModify/1 OK
+- http://localhost:8080/orderDetail/1 OK
+- http://localhost:8080/admin/productModify/1

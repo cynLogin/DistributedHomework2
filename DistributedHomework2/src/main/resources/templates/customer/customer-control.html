@@ -54,7 +54,7 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎来到用户信息界面!'}">
+                    
                     </div>
                     <div class="layui-card-body layui-edge-right">
                         <button class="layui-btn " id="backBtn">返回</button>
@@ -144,7 +144,7 @@
         layui.use(['form', 'laydate', 'layer'], function () {
             var layer = layui.layer;
         });
-
+        var url=window.location.href;
         var customerID = url.match(/\/customerModify\/(\d+)$/)[1];
 
         //确认删除
