@@ -44,20 +44,18 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎!'}">
-                    </div>
-                    <div class="layui-card-body layui-edge-right">
+                    <!-- <div class="layui-card-header custom-header" th:text="${userName+',欢迎!'}"> -->
+                </div>
 
-                        <form action="/user/logout" method="post">
-                            <input type="submit" class="layui-btn " value="登出">
-                            <button class="layui-btn " id="userInfoBtn">个人信息</button>
-                            <button class="layui-btn " id="addOrderBtn">创建订单</button>
-                        </form>
-
-                    </div>
+                <div class="layui-card-body layui-edge-right">
+                    <a href="http://localhost:8080/admin/logout" class="layui-btn ">登出</a>
+                    <button class="layui-btn " id="addOrderBtn">创建订单</button>
+                    <button class="layui-btn " id="userInfoBtn">个人信息</button>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <div class="layui-container">
         <div class="layui-row">
@@ -78,7 +76,7 @@
                             <label class="layui-form-label">客户姓名:</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="queryName" lay-verify="required" class="layui-input"
-                                    placeholder="请输入要查询的客户姓名" disabled>
+                                    placeholder="请输入要查询的客户姓名" >
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -89,7 +87,7 @@
                             </div>
 
                         </div>
-                        <button class="layui-btn custom-button-left" id="queryBtn" >查询</button>
+                        <button class="layui-btn custom-button-left" id="queryBtn">查询</button>
                     </div>
                 </div>
                 <div class="layui-card">
@@ -98,7 +96,7 @@
                     <div class="layui-card-body">
                         <div class="layui-container">
                             <!-- 这里设置display: none 是避免多余的表头显示 -->
-                            <table class="layui-table" lay-filter="queryCustomerTable" id="queryCustomerTable" >
+                            <table class="layui-table" lay-filter="queryCustomerTable" id="queryCustomerTable">
                                 <thead>
                                     <tr>
                                         <th lay-data="{field:'id', width:100}">客户编号</th>
@@ -106,7 +104,8 @@
                                         <th lay-data="{field:'gender', width:100}">客户性别</th>
                                         <th lay-data="{field:'phoneNumber', width:100}">客户电话</th>
                                         <th lay-data="{field:'totalConsumption', width:100}">消费额</th>
-                                        <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作</th>
+                                        <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作
+                                        </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -132,7 +131,7 @@
                         <div class="layui-card-body">
                             <div class="layui-container">
                                 <!-- 这里设置display: none 是避免多余的表头显示 -->
-                                <table class="layui-table" lay-filter="customerFollowTable" id="customerFollowTable" >
+                                <table class="layui-table" lay-filter="customerFollowTable" id="customerFollowTable">
                                     <thead>
                                         <tr>
                                             <th lay-data="{field:'id', width:100}">客户编号</th>
@@ -141,7 +140,8 @@
                                             <th lay-data="{field:'phoneNumber', width:100}">客户电话</th>
                                             <th lay-data="{field:'totalConsumption', width:100}">消费额</th>
                                             <th lay-data="{field:'recentOrderTime', width:100}">最近下单时间</th>
-                                            <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作</th>
+                                            <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作
+                                            </th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -202,14 +202,14 @@
     <!-- 引入jQuery和Bootstrap的JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+
     <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
-    <script src="/employee-management.js"></script>
+    <script src="/employee-home.js"></script>
 
     <script>
         layui.use(['form', 'laydate', 'table'], function () {
             var table = layui.table;
-
+            var form = layui.form;
             // 渲染日期选择组件
             layui.laydate.render({
                 elem: '#start_date',
@@ -217,32 +217,33 @@
                 format: 'yyyy-MM-dd'
             });
 
+            var url = window.location.href;
+            var employeeID = url.match(/\/home\/(\d+)$/)[1];
+
+            $(document).ready(function () {
+                renderQueryCustomerTable(table, "", "", employeeID);
+                renderCustomerFollowTable(table, employeeID);
+                //renderOrderTable(table)
+            });
+            $("#addOrderBtn").click(function () {
+                window.location.href = "http://localhost:8080/employee/addorder/" + employeeID;
+            });
+            $("#userInfoBtn").click(function () {
+                window.location.href = "http://localhost:8080/employeeinfo/" + employeeID;
+            });
+            $("#queryBtn").click(function () {
+                let name = $("#queryName").val();
+                let phone = $("#queryPhone").val();
+                if (name == "" && phone == "") {
+                    alert("请输入查询信息");
+                    return;
+                }
+                renderQueryCustomerTable(table, name, phone, employeeID);
+            });
         });
 
-        var employeeID = url.match(/\/home\/(\d+)$/)[1];
-        
-        $(document).ready(function () {
-            renderQueryCustomerTable(table,"","",employeeID);
-            enderCustomerFollowTable(table,employeeID);
-            //renderOrderTable(table)
-        });
-        $("#addOrderBtn").click(function () {
-            window.location.href = "http://localhost:8080/employee/addorder"+emplyeeID;
-        });
-        $("#userInfoBtn").click(function () {
-            window.location.href = "http://localhost:8080/employeeinfo/"+emplyeeID;
-        });
-        $("#queryBtn").click(function () {
-            let name = $("#queryName").val();
-            let phone= $("#queryPhone").val();
-            if (name == "" && phone == "") {
-                alert("请输入查询信息");
-                return;
-            }
-            renderQueryCustomerTable(table,name,phone);
-        });
 
-        
+
     </script>
 </body>
 

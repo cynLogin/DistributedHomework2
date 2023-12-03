@@ -55,7 +55,7 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎来到用户信息界面!'}">
+                    
                     </div>
                     <div class="layui-card-body layui-edge-right">
                         <button class="layui-btn " id="backBtn">返回</button>
@@ -143,6 +143,7 @@
             var form = layui.form;
             var laydate = layui.laydate;
         });
+        var url=window.location.href;
         var productID = url.match(/\/productModify\/(\d+)$/)[1];
         //确认删除
         function confirmAction() {

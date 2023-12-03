@@ -25,7 +25,7 @@ public class ViewController {
     public String employeeInfo(){
         return "/employee/employee-control";
     }
-    @RequestMapping("/admin/employeecontrol/{employeeID}")
+    @RequestMapping("/admin/employeecontrol")
     public String employeeManagement(){
         return "/employee/employee-management";
     }

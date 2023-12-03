@@ -1,10 +1,11 @@
 function renderQueryCustomerTable(table,queryName,queryPhone,employeeID) {
     let queryCustomerInfoData;
     let queryData = {
-        "userName": queryName,
-        "phoneNumber": queryPhone,
-        "employeeID": employeeID
+        "customerName": queryName,
+        "customerPhone": queryPhone,
+        "customerID": employeeID
     };
+    console.log("查询客户请求:", queryData);
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/employee/querycustomer",

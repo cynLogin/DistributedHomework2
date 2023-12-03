@@ -49,7 +49,7 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header" th:text="${userName+',欢迎来到用户信息界面!'}">
+                    
                     </div>
                     <div class="layui-card-body layui-edge-right">
                         <button class="layui-btn " id="backBtn">返回</button>
@@ -186,11 +186,12 @@
 
 
         <script>
-            layui.use(['form', 'laydate'], function () {
+            layui.use(['form', 'laydate','table'], function () {
                 var form = layui.form;
                 var laydate = layui.laydate;
+                var table = layui.table;
             });
-
+            var url=window.location.href;
             var customerID = url.match(/\/customerDetail\/(\d+)$/)[1];
 
             // 网页加载后渲染订单表格和加载信息
@@ -219,7 +220,7 @@
                 });
             }
             $("#modifyCustomerBtn").click(function(){
-                window.location.href="http://localhost:8080/modifycustomer/"+customerID ;
+                window.location.href="http://localhost:8080/customerModify/"+customerID ;
             });
 
             // 返回
