@@ -8,4 +8,18 @@
     <select id="getByNamePhone" resultType="com.example.distributedhomework2.bean.CustomerBean">
         SELECT * from customer where username like CONCAT("%","#{name}","%") AND CONCAT("%","#{phoneNumber}","%")
     </select>
+    <update id="change">
+        UPDATE customer
+        SET phone_number=#{phoneNumber}
+            username=#{username}
+            password=#{password}
+            address=#{address}
+            total_consumption=#{totalConsumption}
+            sex=#{sex}
+        where id=#{id}
+    </update>
+    <delete id="delete">
+        delete from customer
+        where id=#{id}
+    </delete>
 </mapper>

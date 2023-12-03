@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CustomerMapper {
     CustomerBean getById(String id);
     CustomerBean getByNamePhone(String name,String phoneNumber);
+    int change(String id,String phoneNumber,String username,String sex,double totalConsumption,String address);
+    int deleteOne(String id);
 }
