@@ -13,4 +13,5 @@ public interface ProductMapper {
     ProductBean getOneById(String id);
     int delete(String id);
     int addOne(String id,String productName,double unitPrice);
+    List<ProductBean> getByOrderId(String id);
 }

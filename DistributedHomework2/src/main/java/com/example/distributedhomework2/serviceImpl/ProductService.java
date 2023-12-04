@@ -57,4 +57,7 @@ public class ProductService {
             return "error";
         }
     }
+    public List<ProductBean> getByOrderId(String id){
+        return productMapper.getByOrderId(id);
+    }
 }

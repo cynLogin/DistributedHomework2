@@ -3,10 +3,7 @@ package com.example.distributedhomework2.controller;
 import com.example.distributedhomework2.bean.ProductBean;
 import com.example.distributedhomework2.serviceImpl.ProductService;
 import org.apache.tomcat.util.json.JSONParser;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -50,5 +47,9 @@ public class ProductController {
     @RequestMapping(value = "/admin/addproduct",method = RequestMethod.POST)
     public String addOne(String id,String productName,double unitPrice){
         return productService.addOne(id,productName,unitPrice);
+    }
+    @RequestMapping(value ="/getorderinfo/content/{orderID}",method = RequestMethod.GET)
+    public List<ProductBean> getByOrderId(@PathVariable String orderID){
+        return productService.getByOrderId(orderID);
     }
 }
