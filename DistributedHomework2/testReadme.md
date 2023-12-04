@@ -111,6 +111,8 @@ let formData = {
             }
 ```
 
-- http://localhost:8080/admin/order/all GET 返回所有订单信息
+- http://localhost:8080/admin/order/all GET 返回所有订单信息 
+  - OK
 - http://localhost:8080/admin/customer/all GET 返回所有客户信息
+  - OK
 - 添加订单和订单详情页的功能

@@ -9,8 +9,8 @@
         SELECT * FROM orders where consumer_id=#{id}
     </select>
     <insert id="addOneOrder" >
-        insert into orders(amount_money,order_time,conpletion_status,consumer_id,notes) values (#{amountMoney},NOW(),0,
-                                select id from customer where customer.username=#{consumerName},#{notes})
+        insert into orders(amount_money,order_time,completion_status,consumer_id,notes) values (#{amountMoney},NOW(),0,
+                                (select id from customer where customer.username=#{consumerName}),#{notes})
     </insert>
     <update id="changeStatus">
         update orders

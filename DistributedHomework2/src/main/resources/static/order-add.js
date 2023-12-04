@@ -118,6 +118,7 @@ function addOrder() {
     let orderRemark = $("#orderRemark").val();
     let totalPrice = $("#totalPrice").val();
     let requestOrderContent = [];
+    
     orderContent.forEach(function (product) {
         let requestProduct = {
             "productId": product.id,
@@ -125,7 +126,7 @@ function addOrder() {
         };
         requestOrderContent.push(requestProduct);
     });
-
+    console.log("订单内容", requestOrderContent);
     let formData = {
         "customerName": customerName,
         "orderRemark": orderRemark,
@@ -135,17 +136,22 @@ function addOrder() {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/addorder",
-        data: formData,
+        url: "http://localhost:8080/addOrder",
+        data: JSON.stringify(formData),
+        contentType: "application/json;charset=utf-8",
         success: function (response) {
-            return response;
+            if (response == "success") {
+                alert("创建订单成功");
+                location.reload();
+            }
+            else {
+                alert("创建订单失败:" + response);
+            }
         },
         error: function (error) {
             console.log("Error:" + error);
-            return "fail";
         }
     });
-    return "fail";
 }
 
 // 用于计算订单总价

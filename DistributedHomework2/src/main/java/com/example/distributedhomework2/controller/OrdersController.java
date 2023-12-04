@@ -1,12 +1,15 @@
 package com.example.distributedhomework2.controller;
 
+import com.example.distributedhomework2.bean.OrderFormDataBean;
 import com.example.distributedhomework2.bean.OrdersBean;
+import com.example.distributedhomework2.bean.ProductRequestBean;
 import com.example.distributedhomework2.mapper.OrdersMapper;
 import com.example.distributedhomework2.serviceImpl.OrdersService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.swing.plaf.PanelUI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +26,23 @@ public class OrdersController {
         return ordersService.getAllByCustomerId(customerID);
     }
     @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
-    public String addOneOrder(double totalPrice, String customerName, String orderRemark, List<Map<String,String>>orderContent){
+    public String addOneOrder( @RequestBody ProductRequestBean orderData){
+        //输出orderContent
+        System.out.println(orderData.getCustomerName());
+        System.out.println(orderData.getOrderRemark());
+        List<Map<String,String>> orderContent=orderData.getOrderContent();
+        for (Map<String,String> order : orderContent) {
+            System.out.println(order.get("productId"));
+            System.out.println(order.get("quantity"));
+        }
+        double totalPrice=orderData.getTotalPrice();
+        String customerName=orderData.getCustomerName();
+        String orderRemark=orderData.getOrderRemark();
         return ordersService.addOrder(totalPrice,customerName,orderRemark,orderContent);
     }
     @RequestMapping(value = "/updateorderstatus",method = RequestMethod.POST)
     public String changeStatus(String orderID,String status){
+        System.out.println(orderID+" "+status);
         return ordersService.changeStatus(orderID,status);
     }
     @RequestMapping(value = "/deleteorder",method = RequestMethod.POST)

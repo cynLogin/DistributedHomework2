@@ -1,7 +1,9 @@
 package com.example.distributedhomework2.controller;
 
 import com.example.distributedhomework2.bean.CustomerBean;
+import com.example.distributedhomework2.bean.OrdersBean;
 import com.example.distributedhomework2.service.CustomerService;
+import com.example.distributedhomework2.serviceImpl.OrdersService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -11,9 +13,19 @@ import java.util.List;
 public class CustomerController {
     @Resource
     CustomerService customerService;
+    @Resource
+    OrdersService ordersService;
     @RequestMapping(value = "/getcustomerinfo/{customerID}",method = RequestMethod.GET)
     public CustomerBean load(@PathVariable String customerID){
         return customerService.load(customerID);
+    }
+    @RequestMapping(value = "/getcustomerinfo/byorderID/{orderID}",method = RequestMethod.GET)
+    public CustomerBean loadbyOrder(@PathVariable String orderID){
+        OrdersBean ordersBean=ordersService.getById(orderID);
+        String customerID=ordersBean.getConsumerId();
+        System.out.println(customerID);
+        return customerService.load(customerID);
+
     }
     @RequestMapping(value = "/employee/querycustomer",method = RequestMethod.POST)
     public List<CustomerBean> loadByNamePhone(String userName, String phoneNumber, String employeeID){

@@ -130,13 +130,12 @@
                         <div class="layui-card-header custom-header layui-edge-right">全部订单</div>
                         <div class="layui-container">
                             <!-- 这里设置display: none 是避免多余的表头显示 -->
-                            <table class="layui-table" lay-filter="orderTable" id="orderTable">
+                            <table class="layui-table" lay-filter="orderTable" id="orderTable" style="display: none;">
                                 <thead>
                                     <tr>
                                         <th lay-data="{field:'id', width:100}">订单编号</th>
                                         <th lay-data="{field:'orderTime', width:100}">下单时间</th>
                                         <th lay-data="{field:'amountMoney', width:100}">订单金额</th>
-                                        <th lay-data="{field:'content', width:100}">订单内容</th>
                                         <th lay-data="{field:'completionStatus', width:100}">完成状态</th>
                                         <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作
                                         </th>
@@ -160,7 +159,7 @@
                         <div class="layui-card-header custom-header layui-edge-right">全部客户</div>
                         <div class="layui-container">
                             <!-- 这里设置display: none 是避免多余的表头显示 -->
-                            <table class="layui-table" lay-filter="customerTable" id="customerTable">
+                            <table class="layui-table" lay-filter="customerTable" id="customerTable" style="display: none;">
                                 <thead>
                                     <tr>
                                         <th lay-data="{field:'id', width:100}">客户编号</th>

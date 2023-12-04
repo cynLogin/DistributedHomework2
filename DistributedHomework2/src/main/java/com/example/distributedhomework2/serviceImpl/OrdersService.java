@@ -1,6 +1,7 @@
 package com.example.distributedhomework2.serviceImpl;
 
 import com.example.distributedhomework2.bean.OrdersBean;
+import com.example.distributedhomework2.bean.ProductRequestBean;
 import com.example.distributedhomework2.mapper.OrdersMapper;
 import com.example.distributedhomework2.mapper.OrdersProductMapper;
 import org.springframework.stereotype.Service;
@@ -42,16 +43,18 @@ public class OrdersService {
     public List<OrdersBean> getAll(){
         return ordersMapper.getAll();
     }
-    public String addOrder(double totalPrice, String customerName, String orderRemark, List<Map<String,String>>orderContent)
+    public String addOrder(double totalPrice, String customerName, String orderRemark, List<Map<String,String>> orderContent)
     {
+        //输出orderContent
+
         int item1=ordersMapper.addOneOrder(totalPrice,customerName,orderRemark);
+        System.out.println(item1);
         String newId=ordersMapper.getNew();
-        for (Map<String, String> order : orderContent) {
-            for (Map.Entry<String, String> entry : order.entrySet()) {
-                String key = entry.getKey();
-                String value = entry.getValue();
+        for (Map<String,String> data : orderContent) {
+
+                String key = data.get("productId");
+                String value = data.get("quantity");
                 ordersProductMapper.insertData(newId,key,value);
-            }
         }
         if(item1>0) return "success";
         else return "error";

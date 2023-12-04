@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CustomerService {
     CustomerBean load(String id);
+    //CustomerBean loadByOrderID(String orderID);
     List<CustomerBean> loadByNamePhone(String name,String phoneNumber,String id);
     String update(String id,String phoneNumber,String username,String sex,double totalConsumption,String address);
     String deleteOne(String id);

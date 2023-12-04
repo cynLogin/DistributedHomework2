@@ -250,13 +250,7 @@
             });
             $("#addOrderBtn").click(function () {
                 response = addOrder();
-                if (response == "success") {
-                    alert("创建订单成功");
-                    location.reload();
-                }
-                else {
-                    alert("创建订单失败:" + response);
-                }
+                
             });
             // 返回
             $("#backBtn").click(function () {
