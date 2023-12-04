@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -18,7 +19,7 @@ public class CustomerController {
         return customerService.load(customerID);
     }
     @RequestMapping(value = "/employee/querycustomer",method = RequestMethod.POST)
-    public CustomerBean loadByNamePhone(String userName,String phoneNumber,String employeeID){
+    public List<CustomerBean> loadByNamePhone(String userName, String phoneNumber, String employeeID){
         return customerService.loadByNamePhone(userName,phoneNumber,employeeID);
     }
     @RequestMapping(value = "/modifycustomer",method = RequestMethod.POST)
@@ -28,5 +29,9 @@ public class CustomerController {
     @RequestMapping(value = "/modifycustomer/delete",method = RequestMethod.POST)
     public String deleteOne(String id){
         return customerService.deleteOne(id);
+    }
+    @RequestMapping(value = "/employee/getcustomer",method = RequestMethod.POST)
+    public List<CustomerBean> getByStaffId(String employeeID){
+        return customerService.loadByEmployeeId(employeeID);
     }
 }

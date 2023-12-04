@@ -15,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerBean load(String id){
         return customerMapper.getById(id);
     }
-    public CustomerBean loadByNamePhone(String name,String phoneNumber,String id){
+    public List<CustomerBean> loadByNamePhone(String name,String phoneNumber,String id){
         return customerMapper.getByNamePhone(name,phoneNumber,id);
     }
     public String update(String id,String phoneNumber,String username,String sex,double totalConsumption,String address){

@@ -26,5 +26,6 @@
     <select id="getByEmployeeId" resultType="com.example.distributedhomework2.bean.CustomerBean">
         select * from customer
         where staff_id=#{id}
+        order by recent_order_time desc
     </select>
 </mapper>

@@ -412,7 +412,10 @@ let formData={
                 }
 ```
 # 后端进度
-已写完emplyee-home.页面之前的
+- 已写完emplyee-home.页面之前的
+- employeehome中的返回所有订单列表少发了客户id
+- 管理员添加新员工那里没有密码信息，而密码是非空的,也没有id信息，而id不是自增的
+- 创建order那里只有客户name，name不是主码
 # 测试
 
 > YQY

@@ -5,6 +5,7 @@ import com.example.distributedhomework2.mapper.StaffMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class StaffService {
@@ -24,6 +25,21 @@ public class StaffService {
     }
     public String deleteStaff(String id){
         int item=staffMapper.deleteStaff(id);
+        if(item>0){
+            return "success";
+        }
+        else{
+            return "error";
+        }
+    }
+    public List<StaffBean>getAll(){
+        return staffMapper.getAll();
+    }
+    public List<StaffBean>getByNamePhone(String username,String phoneNumber){
+        return staffMapper.getByNamePhone(username,phoneNumber);
+    }
+    public String addOne(String username,String phoneNumber,String sex){
+        int item=staffMapper.addOne(username,phoneNumber,sex);
         if(item>0){
             return "success";
         }

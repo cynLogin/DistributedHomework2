@@ -26,4 +26,13 @@ public class OrdersService {
             return "error";
         }
     }
+    public String changeStatus(String id,String completionStatus){
+        int changes=ordersMapper.changeStatus(id,completionStatus);
+        if(changes>0){
+            return "success";
+        }
+        else{
+            return "error";
+        }
+    }
 }

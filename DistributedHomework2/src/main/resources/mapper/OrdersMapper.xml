@@ -11,4 +11,7 @@
     <insert id="addOneOrder" >
         insert into orders(amount_money,conpletion_status,consumer_id,notes) values (#{amountMoney},#{completionStatus},#{consumerId},#{notes})
     </insert>
+    <update id="changeStatus">
+        update
+    </update>
 </mapper>

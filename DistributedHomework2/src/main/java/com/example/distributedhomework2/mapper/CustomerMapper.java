@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CustomerMapper {
     CustomerBean getById(String id);
-    CustomerBean getByNamePhone(String name,String phoneNumber,String id);
+    List<CustomerBean> getByNamePhone(String name,String phoneNumber,String id);
     int change(String id,String phoneNumber,String username,String sex,double totalConsumption,String address);
     int deleteOne(String id);
     List<CustomerBean> getByEmployeeId(String id);

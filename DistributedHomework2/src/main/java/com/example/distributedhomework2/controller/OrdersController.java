@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 @RestController
 public class OrdersController {
     @Resource
     OrdersService ordersService;
-    @RequestMapping(value = "/employee/orderDetail/{orderID}",method = RequestMethod.GET)
+    @RequestMapping(value = "/getorderinfo/{orderID}",method = RequestMethod.GET)
     public OrdersBean loadById(@PathVariable String orderID){
         return ordersService.getById(orderID);
     }
@@ -23,8 +24,12 @@ public class OrdersController {
     public List<OrdersBean> loadByCustomerId(@PathVariable String customerID){
         return ordersService.getAllByCustomerId(customerID);
     }
-    @RequestMapping(value = "/employee/createOrder",method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
     public String addOneOrder(double amountMoney,int completionStatus,String consumerId,String notes){
         return ordersService.addOneOrder(amountMoney,completionStatus,consumerId,notes);
     }
+//    @RequestMapping(value = "/updateorderstatus",method = RequestMethod.POST)
+//    public String changeStatus(String orderID){
+//
+//    }
 }

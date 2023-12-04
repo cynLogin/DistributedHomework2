@@ -23,4 +23,7 @@ public class ProductService {
     public List<ProductBean> getAll(){
         return productMapper.getAll();
     }
+    public List<ProductBean> getByName(String productName){
+        return productMapper.getByName(productName);
+    }
 }

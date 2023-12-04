@@ -8,4 +8,8 @@
     <select id="getAll" resultType="com.example.distributedhomework2.bean.ProductBean">
         select * from product
     </select>
+    <select id="getByName" resultType="com.example.distributedhomework2.bean.ProductBean">
+        SELECT * from product
+        where product_name like CONCAT("%","#{productName}","%")
+    </select>
 </mapper>

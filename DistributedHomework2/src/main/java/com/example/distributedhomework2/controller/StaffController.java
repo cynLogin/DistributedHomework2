@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 public class StaffController {
@@ -24,5 +25,17 @@ public class StaffController {
     @RequestMapping(value = "/modifyemployee/delete",method = RequestMethod.POST)
     public String deleteStaff(String id){
         return staffService.deleteStaff(id);
+    }
+    @RequestMapping(value = "/admin/allemployee",method = RequestMethod.POST)
+    public List<StaffBean> loadAll(){
+        return staffService.getAll();
+    }
+    @RequestMapping(value = "/admin/queryemployee",method = RequestMethod.POST)
+    public List<StaffBean> loadByNamePhone(String username,String phoneNumber){
+        return staffService.getByNamePhone(username,phoneNumber);
+    }
+    @RequestMapping(value = "/admin/addemployee",method = RequestMethod.POST)
+    public String addOne(String addName,String addPhone,String addSex){
+        return staffService.addOne(addName,addPhone,addSex);
     }
 }

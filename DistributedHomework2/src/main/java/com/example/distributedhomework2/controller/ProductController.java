@@ -21,4 +21,8 @@ public class ProductController {
     public List<ProductBean> getAll(){
         return productService.getAll();
     }
+    @RequestMapping(value = "/queryProduct",method = RequestMethod.GET)
+    public List<ProductBean> getByName(String name){
+        return productService.getByName(name);
+    }
 }
