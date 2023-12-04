@@ -4,7 +4,6 @@ public class CustomerBean {
     private String id;
     private String phoneNumber;
     private String username;
-    private String password;
     private String address;
     private double totalConsumption;
     private String staffId;
@@ -40,14 +39,6 @@ public class CustomerBean {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAddress() {

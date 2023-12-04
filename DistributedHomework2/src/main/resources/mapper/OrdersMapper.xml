@@ -20,5 +20,4 @@
         delete from orders
         where id=#{orderID}
     </delete>
-
 </mapper>
