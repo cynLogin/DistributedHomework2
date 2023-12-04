@@ -37,4 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
         if(item>0) return "success";
         else return "error";
     }
+    public List<CustomerBean>getAll(){
+        return customerMapper.getAll();
+    }
 }

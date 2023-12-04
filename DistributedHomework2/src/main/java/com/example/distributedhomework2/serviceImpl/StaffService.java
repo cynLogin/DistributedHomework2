@@ -47,4 +47,13 @@ public class StaffService {
             return "error";
         }
     }
+    public String updatePwd(String id,String password,String newPassword){
+        int item=staffMapper.updatePwd(id,password,newPassword);
+        if(item>0){
+            return "success";
+        }
+        else{
+            return "error";
+        }
+    }
 }

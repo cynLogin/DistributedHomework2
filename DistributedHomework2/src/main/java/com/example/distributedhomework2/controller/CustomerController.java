@@ -2,10 +2,7 @@ package com.example.distributedhomework2.controller;
 
 import com.example.distributedhomework2.bean.CustomerBean;
 import com.example.distributedhomework2.service.CustomerService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -39,5 +36,9 @@ public class CustomerController {
     @RequestMapping(value = "/employee/addcustomer",method = RequestMethod.POST)
     public String addOne(String id,String username,String sex,String phoneNumber,String address,String employeeID){
         return customerService.addOne(id,username,phoneNumber,sex,address,employeeID);
+    }
+    @GetMapping(value = "/admin/customer/all")
+    public List<CustomerBean>getAll(){
+        return customerService.getAll();
     }
 }

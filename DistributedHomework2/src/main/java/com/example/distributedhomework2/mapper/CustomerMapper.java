@@ -12,4 +12,5 @@ public interface CustomerMapper {
     int deleteOne(String id);
     List<CustomerBean> getByEmployeeId(String id);
     int addOne(String id,String username,String phoneNumber,String sex,String address,String staff_id);
+    List<CustomerBean> getAll();
 }

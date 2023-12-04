@@ -9,7 +9,8 @@
         SELECT * FROM orders where consumer_id=#{id}
     </select>
     <insert id="addOneOrder" >
-        insert into orders(amount_money,conpletion_status,consumer_id,notes) values (#{amountMoney},#{completionStatus},#{consumerId},#{notes})
+        insert into orders(amount_money,order_time,conpletion_status,consumer_id,notes) values (#{amountMoney},NOW(),0,
+                                select id from customer where customer.username=#{consumerName},#{notes})
     </insert>
     <update id="changeStatus">
         update orders
@@ -20,4 +21,13 @@
         delete from orders
         where id=#{orderID}
     </delete>
+    <select id="getAll" resultType="com.example.distributedhomework2.bean.OrdersBean">
+        select * from
+                     orders
+    </select>
+    <select id="getNew" resultType="String">
+        select id from orders
+        order by order_time desc
+        limit 1
+    </select>
 </mapper>

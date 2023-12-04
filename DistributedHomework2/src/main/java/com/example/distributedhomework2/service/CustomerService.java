@@ -11,4 +11,5 @@ public interface CustomerService {
     String deleteOne(String id);
     List<CustomerBean> loadByEmployeeId(String id);
     String addOne(String id,String username,String phoneNumber,String sex,String address,String staff_id);
+    List<CustomerBean> getAll();
 }

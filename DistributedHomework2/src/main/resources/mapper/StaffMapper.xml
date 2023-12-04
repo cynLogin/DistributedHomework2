@@ -29,4 +29,10 @@
         insert into staff(id,username,sex,phone_number)
     values (#{id},#{username},#{sex},#{phoneNumber})
     </insert>
+    <update id="updatePwd">
+        update staff
+        set
+            password=#{newPassword}
+        where id=#{id} and password=#{password}
+    </update>
 </mapper>

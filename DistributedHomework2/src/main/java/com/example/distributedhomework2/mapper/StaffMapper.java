@@ -11,4 +11,5 @@ public interface StaffMapper {
     List<StaffBean> getAll();
     List<StaffBean> getByNamePhone(String username,String phoneNumber);
     int addOne(String id,String username,String phoneNumber,String sex);
+    int updatePwd(String id,String password,String newPassword);
 }
