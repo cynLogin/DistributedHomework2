@@ -56,4 +56,7 @@ public class StaffService {
             return "error";
         }
     }
+    public StaffBean getByName(String username){
+        return getByName(username);
+    }
 }
