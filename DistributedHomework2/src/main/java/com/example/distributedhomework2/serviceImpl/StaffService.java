@@ -57,6 +57,6 @@ public class StaffService {
         }
     }
     public StaffBean getByName(String username){
-        return getByName(username);
+        return staffMapper.getByName(username);
     }
 }

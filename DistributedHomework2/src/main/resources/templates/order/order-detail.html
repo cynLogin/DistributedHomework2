@@ -219,7 +219,7 @@
                                         <option value=""></option>
                                         <!-- 三个选项：进行中、未完成、已完成 -->
                                         <option value="0">进行中</option>
-                                        <option value="1">未完成</option>
+                                        <option value="1">未开始</option>
                                         <option value="2">已完成</option>
                                     </select>
                                 </div>
@@ -242,6 +242,8 @@
 
                     <div class="layui-card-body">
                         <div class="layui-card-header custom-header layui-edge-right">删除订单</div>
+                        <br>
+
                         <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn">删除该订单</button>
                     </div>
                 </div>
@@ -294,7 +296,7 @@
                         if (status == 0) {
                             $("#status").val("进行中");
                         } else if (status == 1) {
-                            $("#status").val("未完成");
+                            $("#status").val("未开始");
                         } else if (status == 2) {
                             $("#status").val("已完成");
                         }
@@ -324,19 +326,7 @@
                 });
             }
             function loadOrderContent(orderID) {
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8080/getorderinfo/content" + orderID,
-                    success: function (response) {
-                        console.log("订单信息返回" + response);
-                        // 产品列表
-                        let data = response;
-                        renderOrderContentTable(table, data);
-                    },
-                    error: function (error) {
-                        console.log("Error:" + error);
-                    }
-                });
+                renderOrderContentTable(table, orderID);
             }
             // 更新按钮
             $("#upgradeBtn").click(function () {
@@ -372,8 +362,7 @@
                 $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/deleteorder",
-                    data: JSON.stringify(formData),
-                    contentType: "application/json;charset=utf-8",
+                    data: formData,
                     success: function (response) {
                         if (response == "success") {
                             alert("删除成功");
@@ -392,7 +381,6 @@
                 window.history.back();
             });
         });
-
     </script>
 </body>
 

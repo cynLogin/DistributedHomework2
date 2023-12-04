@@ -6,6 +6,17 @@ function renderOrderTable(table, customerId) {
         success: function (response) {
             orderInfoData = response;
             console.log("客户返回:", orderInfoData);
+            orderInfoData.forEach(function (order) {
+                statusCode=order.completionStatus;
+                if(statusCode==0){
+                    order.completionStatus="进行中";
+                }else if(statusCode==1){
+                    order.completionStatus="未开始";
+                }else if(statusCode==2){
+                    order.completionStatus="已完成";
+                }
+                
+            });
             // 渲染表格
             table.render({
                 elem: '#orderInfoTable',
@@ -16,7 +27,6 @@ function renderOrderTable(table, customerId) {
                     { field: 'id', title: '订单编号' },
                     { field: 'orderTime', title: '交易日期' },
                     { field: 'amountMoney', title: '订单金额' },
-                    { field: 'content', title: '订单内容' },
                     { field: 'completionStatus', title: '订单状态' },
                     { fixed: 'right', align: 'center', toolbar: '#bar', title: '操作' }
                 ]],

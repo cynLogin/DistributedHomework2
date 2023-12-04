@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
-
+    
 
 <head>
     <meta charset="UTF-8">
@@ -48,14 +48,13 @@
 </head>
 
 <!-- 这里如果使用ajax提交就会收不到用户名，只能使用form表单提交，怪 -->
-
 <body>
     <div class="container">
         <h2>用户登录</h2>
-        <div th:if="${#httpServletRequest.getParameter('error')} " style="color: red;">
-            <p>登录失败,请检查用户名和密码</p>
+        <div th:if="${param.error != null}" style="color: red;">
+            <p>Login failed, please check your username and password.</p>
         </div>
-        <form method="post" action="http://localhost:8080/user/login">
+        <form method="post" action="http://localhost:8080/employee/login">
             <div class="form-group">
                 <label for="username" style="margin-right: 10px;">用户名:</label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="请输入用户名" required>
@@ -66,7 +65,7 @@
             </div>
             <div class="button-group">
                 <button type="submit" class="btn btn-primary">登录</button>
-                <a href="adminloginpage" class="btn btn-link">管理员登录</a>
+                <a href="/adminloginpage" class="btn btn-link">管理员登录</a>
             </div>
         </form>
     </div>

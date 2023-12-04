@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 public class AdministratorService {
     @Resource
     AdministratorMapper administratorMapper;
-    AdministratorBean getByName(String username){
+    public AdministratorBean getByName(String username){
         return administratorMapper.getByName(username);
     }
 }

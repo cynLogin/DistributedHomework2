@@ -47,6 +47,7 @@ public class OrdersController {
     }
     @RequestMapping(value = "/deleteorder",method = RequestMethod.POST)
     public String deleteOrder(String orderID){
+        System.out.println("删除订单");
         return ordersService.deleteOrder(orderID);
     }
     @GetMapping(value = "/admin/order/all")

@@ -12,11 +12,11 @@ function renderOrderData(table) {
                 if(statusCode==0){
                     order.completionStatus="进行中";
                 }else if(statusCode==1){
-                    order.completionStatus="未完成";
+                    order.completionStatus="未开始";
                 }else if(statusCode==2){
                     order.completionStatus="已完成";
                 }
-                order.amountMoney = calculateAmount(order);
+                
             });
             // 渲染表格
             table.render({

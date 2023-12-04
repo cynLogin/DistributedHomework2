@@ -25,6 +25,9 @@
     <select id="getByNamePhone" resultType="com.example.distributedhomework2.bean.StaffBean">
         SELECT * from staff where username like CONCAT("%",#{username},"%") AND phone_number like CONCAT("%",#{phoneNumber},"%")
     </select>
+    <select id="getByName" resultType="com.example.distributedhomework2.bean.StaffBean">
+        SELECT * from staff where username = #{username}
+    </select>
     <insert id="addOne">
         insert into staff(id,username,sex,phone_number)
     values (#{id},#{username},#{sex},#{phoneNumber})
