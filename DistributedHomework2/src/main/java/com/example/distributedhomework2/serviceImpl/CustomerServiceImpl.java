@@ -6,6 +6,7 @@ import com.example.distributedhomework2.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 @Service
@@ -30,5 +31,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
     public List<CustomerBean> loadByEmployeeId(String id){
         return customerMapper.getByEmployeeId(id);
+    }
+    public String addOne(String id,String username,String phoneNumber,String sex,String address,String staff_id){
+        int item=customerMapper.addOne(id,username,phoneNumber,sex,address,staff_id);
+        if(item>0) return "success";
+        else return "error";
     }
 }

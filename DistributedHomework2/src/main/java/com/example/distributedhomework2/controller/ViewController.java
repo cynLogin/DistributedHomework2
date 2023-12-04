@@ -45,4 +45,6 @@ public class ViewController {
     public String productModify(){
         return "/product/product-control";
     }
+    @RequestMapping("/employee/addcustomer/{employID}")
+    public String addCustomer(){return "/customer/customer-add";}
 }

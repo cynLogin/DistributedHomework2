@@ -34,4 +34,8 @@ public class CustomerController {
     public List<CustomerBean> getByStaffId(String employeeID){
         return customerService.loadByEmployeeId(employeeID);
     }
+    @RequestMapping(value = "/employee/addcustomer",method = RequestMethod.POST)
+    public String addOne(String id,String username,String sex,String phoneNumber,String address,String employeeID){
+        return customerService.addOne(id,username,phoneNumber,sex,address,employeeID);
+    }
 }

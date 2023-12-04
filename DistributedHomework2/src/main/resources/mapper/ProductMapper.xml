@@ -10,6 +10,26 @@
     </select>
     <select id="getByName" resultType="com.example.distributedhomework2.bean.ProductBean">
         SELECT * from product
-        where product_name like CONCAT("%","#{productName}","%")
+        where product_name like CONCAT("%",#{productName},"%")
     </select>
+    <update id="update">
+        update product
+        set
+            product_name=#{productName},
+            unit_price=#{unitPrice},
+            inventory_num=#{inventoryNum}
+        where id=#{id}
+    </update>
+    <select id="getOneById" resultType="com.example.distributedhomework2.bean.ProductBean">
+        select * from product
+        where id=#{id}
+    </select>
+    <delete id="delete">
+        delete from product
+        where id=#{id}
+    </delete>
+    <insert id="addOne">
+        insert into product(id,product_name,unit_price)
+        values(#{id},#{productName},#{unitPrice})
+    </insert>
 </mapper>
