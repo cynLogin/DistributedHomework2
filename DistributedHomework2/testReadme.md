@@ -116,3 +116,7 @@ let formData = {
 - http://localhost:8080/admin/customer/all GET 返回所有客户信息
   - OK
 - 添加订单和订单详情页的功能
+
+> 存在问题
+- 根据订单ID返回所有订单内容(产品列表)
+- 根据订单ID删除订单,注意要删除订单-产品表中的内容 
