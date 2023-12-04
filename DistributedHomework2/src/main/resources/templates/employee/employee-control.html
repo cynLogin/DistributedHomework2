@@ -61,8 +61,7 @@
                         <button class="layui-btn " id="backBtn">返回</button>
                     </div>
                 </div>
-            </div>
-        </div>
+
         <div class="layui-row">
             <!-- 客户信息左侧部分 -->
             <div class="layui-col-md6">
@@ -75,8 +74,9 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header layui-edge-right">员工信息</div>
-                    <div class="layui-card-body">
+                    
+
+                        <div class="layui-card-header custom-header layui-edge-right">员工信息</div>
                         <form class="layui-form">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">ID:</label>
@@ -113,7 +113,49 @@
                             onclick="confirmAction()">删除该员工</button>
                     </div>
                 </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <p>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </p>
+                        
+    
+                            <div class="layui-card-header custom-header layui-edge-right">修改密码</div>
+                            <form class="layui-form">
+                                
+                                <div class="layui-form-item">
+                                    <p>
+                                        <label class="layui-form-label">原密码:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="password" id="nowPassword" lay-verify="required" class="layui-input">
+                                    </div>
+                                    </p>
+                                </div>
+    
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">新密码:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="password" id="newPassword" lay-verify="required" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">电话:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="password" id="confirmPassword" lay-verify="required" class="layui-input">
+                                    </div>
+                                </div>
+                            </form>
+                            <button class="layui-btn custom-button-left " id="modifyPassword">修改密码</button>
+                            
+                        </div>
+                    </div>
             </div>
+            
 
         </div>
     </div>
@@ -167,7 +209,7 @@
                     console.log("员工信息返回" + response);
                     $("#id").val(response.id);
                     $("#name").val(response.username);
-                    $("#gender").val(response.gender);
+                    $("#gender").val(response.sex);
                     $("#phone").val(response.phoneNumber);
 
                 },
@@ -185,14 +227,46 @@
             let formData = {
                 id: employeeID,
                 newName: newName,
-                newGender: newGender,
+                newSex: newGender,
                 newPhone: newPhone,
             }
+            console.log(formData);
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/modifyemployee",
-                data: JSON.stringify(formData),
-                contentType: "application/json;charset=utf-8",
+                data: formData,
+                success: function (response) {
+                    if (response == "success") {
+                        alert("修改成功");
+                        loadInfo()
+                    } else {
+                        alert("修改失败");
+                    }
+                },
+                error: function (error) {
+                    console.log("Error:" + error);
+                }
+            });
+        });
+        $("#modifyPassword").click(function (event) {
+            event.preventDefault();
+            let nowPassword = $("#nowPassword").val();
+            let newPassword = $("#newPassword").val();
+            let confirmPassword = $("#confirmPassword").val();
+            if(newPassword!=confirmPassword){
+                alert("两次输入的密码不一致");
+                return;
+            }
+            let formData = {
+                id: employeeID,
+                nowPassword: nowPassword,
+                newPassword: newPassword,
+            }
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/modifyemployee/password",
+                data: formData,
                 success: function (response) {
                     if (response == "success") {
                         alert("修改成功");
@@ -208,15 +282,15 @@
         });
 
         function deleteWorker(event) {
-            event.preventDefault();
+            
             let formData = {
                 id: employeeID
             };
+            console.log(formData);
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/modifyemployee/delete",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData), //将表单转换为JSON格式
+                data: formData, //将表单转换为JSON格式
                 success: function (response) {
                     console.log("Success" + response);
                     if (response == 'success') {

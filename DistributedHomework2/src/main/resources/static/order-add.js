@@ -10,8 +10,7 @@ function renderProductTable(table, layer, queryName) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/queryProduct",
-        data: JSON.stringify(queryData),
-        contentType: "application/json;charset=utf-8",
+        data: queryData,
         success: function (response) {
             productInfo = response;
             console.log("查询产品返回:", productInfo);
@@ -22,11 +21,11 @@ function renderProductTable(table, layer, queryName) {
                 toolbar: '#toolbar',
                 defaultToolbar: ['filter', 'exports'],
                 cols: [[
-                    { field: 'id', width: 100, title: '产品编号' },
-                    { field: 'productName', width: 100, title: '产品名称' },
-                    { field: 'unitPrice', width: 100, title: '单价' },
-                    { field: 'inventoryNum', width: 120, title: '库存数量' },
-                    { fixed: 'right', width: 200, align: 'center', toolbar: '#bar2', title: '操作' }
+                    { field: 'id',  title: '产品编号' },
+                    { field: 'productName', title: '产品名称' },
+                    { field: 'unitPrice', title: '单价' },
+                    { field: 'inventoryNum', title: '库存数量' },
+                    { fixed: 'right', align: 'center', toolbar: '#bar2', title: '操作' }
                 ]],
                 page: true
             });
@@ -62,6 +61,11 @@ function renderProductTable(table, layer, queryName) {
                         selectedData.price = price;
                         // 添加到订单内容中
                         orderContent.push(selectedData);
+                        console.log("订单内容", orderContent);
+                        renderOrderContentTable(table);
+                        // 计算总金额
+                        let totalAmount = calculateTotalAmount(orderContent);
+                        $("#totalPrice").val(totalAmount);
                     });
                     $("#cancelBtn").on("click", function () {
                         $("#okBtn").off("click");
@@ -79,16 +83,16 @@ function renderProductTable(table, layer, queryName) {
 function renderOrderContentTable(table) {
     table.render({
         elem: '#orderContentTable',
-        data: productInfo,
+        data: orderContent,
         toolbar: '#toolbar',
         defaultToolbar: ['filter', 'exports'],
         cols: [[
-            { field: 'id', width: 100, title: '产品编号' },
-            { field: 'productName', width: 100, title: '产品名称' },
-            { field: 'unitPrice', width: 100, title: '单价' },
-            { field: 'quantity', width: 120, title: '数量' },
-            { field: 'price', width: 120, title: '金额' },
-            { fixed: 'right', width: 200, align: 'center', toolbar: '#bar1', title: '操作' }
+            { field: 'id', title: '产品编号' },
+            { field: 'productName', title: '产品名称' },
+            { field: 'unitPrice', title: '单价' },
+            { field: 'quantity', title: '数量' },
+            { field: 'price', title: '金额' },
+            { fixed: 'right', align: 'center', toolbar: '#bar1', title: '操作' }
         ]],
         page: true
     });
@@ -109,32 +113,30 @@ function renderOrderContentTable(table) {
         }
     });
 }
-function addOrder(){
+function addOrder() {
     let customerName = $("#customerName").val();
     let orderRemark = $("#orderRemark").val();
-    let totalPrice=$("#totalPrice").val();
-    let requestOrderContent=[];
+    let totalPrice = $("#totalPrice").val();
+    let requestOrderContent = [];
     orderContent.forEach(function (product) {
-        let requestProduct={
-            "productId":product.id,
-            "quantity":product.quantity
+        let requestProduct = {
+            "productId": product.id,
+            "quantity": product.quantity
         };
         requestOrderContent.push(requestProduct);
     });
-    
-    let formData={
-        "customerName":customerName,
-        "orderRemark":orderRemark,
-        "totalPrice":totalPrice,
-        "orderContent":requestOrderContent
+
+    let formData = {
+        "customerName": customerName,
+        "orderRemark": orderRemark,
+        "totalPrice": totalPrice,
+        "orderContent": requestOrderContent
     };
 
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/addorder",
-
-        data: JSON.stringify(formData),
-        contentType: "application/json;charset=utf-8",
+        data: formData,
         success: function (response) {
             return response;
         },

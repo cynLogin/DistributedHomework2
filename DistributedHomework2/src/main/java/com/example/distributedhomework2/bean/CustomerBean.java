@@ -6,6 +6,7 @@ public class CustomerBean {
     private String username;
     private String address;
     private double totalConsumption;
+    private String recentOrderTime;
     private String staffId;
     private String sex;
 
@@ -63,5 +64,11 @@ public class CustomerBean {
 
     public void setStaffId(String staffId) {
         this.staffId = staffId;
+    }
+    public void setRecentOrderTime(String recentOrderTime){
+        this.recentOrderTime = recentOrderTime;
+    }
+    public String getRecentOrderTime(){
+        return recentOrderTime;
     }
 }

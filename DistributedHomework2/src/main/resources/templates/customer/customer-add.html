@@ -35,6 +35,7 @@
             height: 80px;
             /* Adjust the height as needed */
         }
+
         .custom-button-left {
             margin-left: 110px;
             /* Adjust the distance from the left edge as needed */
@@ -54,14 +55,14 @@
                         <br>
                         <br>
                     </p>
-                    
-                    </div>
-                    <div class="layui-card-body layui-edge-right">
-                        <button class="layui-btn " id="backBtn">返回</button>
-                    </div>
+
+                </div>
+                <div class="layui-card-body layui-edge-right">
+                    <button class="layui-btn " id="backBtn">返回</button>
                 </div>
             </div>
         </div>
+
         <div class="layui-row">
             <!-- 客户信息左侧部分 -->
             <div class="layui-col-md6">
@@ -72,14 +73,14 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header layui-edge-right">注册客户</div>
-                    <div class="layui-card-body">
+                        <div class="layui-card-header custom-header layui-edge-right">注册客户</div>
                         <form class="layui-form">
-                            
+
                             <div class="layui-form-item">
                                 <label class="layui-form-label">姓名:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="userName" lay-verify="required" class="layui-input" placeholder="请输入客户姓名">
+                                    <input type="text" id="userName" lay-verify="required" class="layui-input"
+                                        placeholder="请输入客户姓名">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -92,7 +93,8 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">电话:</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="phone" lay-verify="required" class="layui-input" placeholder="请输入客户电话">
+                                    <input type="text" id="phone" lay-verify="required" class="layui-input"
+                                        placeholder="请输入客户电话">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -102,104 +104,77 @@
                                         class="layui-input high-layui-input" placeholder="请输入客户地址">
                                 </div>
                             </div>
-                            <button class="layui-btn custom-button-left" id="addBtn">返回</button>
+                            <button class="layui-btn custom-button-left" id="addBtn">注册</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        
+    </div>
+
     </div>
 
 
 
 
-        <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
-        <!-- 引入jQuery和Bootstrap的JavaScript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/layui/2.5.7/layui.js"></script>
+    <!-- 引入jQuery和Bootstrap的JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-        <script src="/customer-detail.js"></script>
+    <script src="/customer-detail.js"></script>
 
-        <!-- 表格中的按钮 -->
-        <script type="text/html" id="bar">
+    <!-- 表格中的按钮 -->
+    <script type="text/html" id="bar">
             <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="click">查看</button>
         </script>
 
 
-        <script>
-            layui.use(['form', 'laydate'], function () {
-                var form = layui.form;
-                var laydate = layui.laydate;
-            });
-            var url=window.location.href;
-            var employeeID = url.match(/\/addcustomer\/(\d+)$/)[1];
+    <script>
+        layui.use(['form', 'laydate'], function () {
+            var form = layui.form;
+            var laydate = layui.laydate;
+        });
+        var url = window.location.href;
+        var employeeID = url.match(/\/addcustomer\/(\d+)$/)[1];
 
-            // 网页加载后渲染订单表格和加载信息
-            $(document).ready(function () {
-                
-            });
-            $("#addBtn").click(function(){
-                let name=$("#userName").val();
-                let gender=document.querySelector('input[name="gender"]:checked').value;
-                let phone=$("#phone").val();
-                let address=$("#address").val();
-                let formData={
-                    username: name,
-                    gender: gender,
-                    phoneNumber: phone,
-                    address: address,
-                    employeeID: employeeID
-                }
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost:8080/employee/addcustomer",
-                    data: JSON.stringify(formData),
-                    contentType: "application/json;charset=utf-8",
-                    success: function (response) {
-                        if(response=="success"){
-                            alert("添加成功");
-                        }
-                        else{
-                            alert("添加失败:"+response);
-                        }
-                        
-                    },
-                    error: function (error) {
-                        console.log("Error:" + error);
-                    }
-                });
-            });
 
-            //加载客户信息
-            function loadCustomerInfo(customerID) {
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8080/getcustomerinfo/" + customerID,
-                    success: function (response) {
-                        console.log("客户信息:" + response);
-                        $("#userID").val(response.id);
-                        $("#userName").val(response.username);
-                        $("#gender").val(response.gender);
-                        $("#phone").val(response.phoneNumber);
-                        $("#consumption").val(response.totalConsumption);
-                        $("#address").val(response.address);
-                    },
-                    error: function (error) {
-                        console.log("Error:" + error);
-                    }
-                });
+        $("#addBtn").click(function () {
+            let name = $("#userName").val();
+            let gender = document.querySelector('input[name="gender"]:checked').value;
+            let phone = $("#phone").val();
+            let address = $("#address").val();
+            let formData = {
+                username: name,
+                gender: gender,
+                phoneNumber: phone,
+                address: address,
+                employeeID: employeeID
             }
-            $("#modifyCustomerBtn").click(function(){
-                window.location.href="http://localhost:8080/modifycustomer/"+customerID ;
-            });
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/employee/addcustomer",
+                data: formData,
+                success: function (response) {
+                    if (response == "success") {
+                        alert("添加成功");
+                    }
+                    else {
+                        alert("添加失败:" + response);
+                    }
 
-            // 返回
-            $("#backBtn").click(function () {
-                window.history.back();
+                },
+                error: function (error) {
+                    console.log("Error:" + error);
+                }
             });
-        </script>
+        });
+        // 返回
+        $("#backBtn").click(function () {
+            window.history.back();
+        });
+    </script>
 </body>
 
 </html>

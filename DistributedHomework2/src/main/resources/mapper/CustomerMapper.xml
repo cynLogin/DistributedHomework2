@@ -7,7 +7,7 @@
     </select>
     <select id="getByNamePhone" resultType="com.example.distributedhomework2.bean.CustomerBean">
         SELECT * from customer where username like CONCAT("%",#{name},"%") AND phone_number like CONCAT("%",#{phoneNumber},"%")
-    AND id like CONCAT("%",#{id},"%")
+    AND staff_id = #{id}
     </select>
     <update id="change">
         UPDATE customer

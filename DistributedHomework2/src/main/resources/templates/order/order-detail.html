@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
         <div class="layui-row">
             <!-- 客户信息左侧部分 -->
             <div class="layui-col-md6">
@@ -71,8 +71,9 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header layui-edge-right">订单信息</div>
-                    <div class="layui-card-body">
+                    
+                    
+                        <div class="layui-card-header custom-header layui-edge-right">订单信息</div>
                         <form class="layui-form">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">订单编号:</label>
@@ -108,53 +109,54 @@
                         </form>
                     </div>
                 </div>
-            </div>
-            <!-- 客户信息右侧部分 -->
-            <div class="layui-col-md6">
-                <div class="layui-card">
-                    <p>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </p>
-
-                    <div class="layui-card-body">
-                        <form class="layui-form">
-
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">客户姓名:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="customerName" lay-verify="required" class="layui-input"
-                                        disabled>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <p>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </p>
+    
+                        <div class="layui-card-body">
+                            <form class="layui-form">
+    
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户姓名:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="customerName" lay-verify="required" class="layui-input"
+                                            disabled>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">客户性别:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="genter" lay-verify="required" class="layui-input" disabled>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户性别:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="genter" lay-verify="required" class="layui-input" disabled>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">客户电话:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="phone" lay-verify="required" class="layui-input" disabled>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户电话:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="phone" lay-verify="required" class="layui-input" disabled>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">客户地址:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="address" lay-verify="required"
-                                        class="layui-input high-layui-input" disabled>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户地址:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="address" lay-verify="required"
+                                            class="layui-input high-layui-input" disabled>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- 客户信息右侧部分 -->
+            
             <div class="layui-row">
                 <!-- 订单信息 -->
                 <div class="layui-col-md12">
@@ -162,12 +164,13 @@
                         <p>
     
                         </p>
-                        <div class="layui-card-header custom-header layui-edge-right">订单内容</div>
+                        
     
                         <div class="layui-card-body">
+                            <div class="layui-card-header custom-header layui-edge-right">订单内容</div>
                             <div class="layui-container">
                                 <!-- 这里设置display: none 是避免多余的表头显示 -->
-                                <table class="layui-table" lay-filter="orderContentTable" id="orderContentTable" >
+                                <table class="layui-table" lay-filter="orderContentTable" id="orderContentTable" style="display: none;">
                                     <thead>
                                         <tr>
                                             <th lay-data="{field:'id', width:100}">产品编号</th>
@@ -193,8 +196,9 @@
                             <br>
                             <br>
                         </p>
-                        <div class="layui-card-header custom-header layui-edge-right">更新订单状态</div>
+                        
                         <div class="layui-card-body">
+                            <div class="layui-card-header custom-header layui-edge-right">更新订单状态</div>
                             <form class="layui-form">
 
                                 <div class="layui-form-item">
@@ -220,8 +224,9 @@
                             <br>
 
                         </p>
-                        <div class="layui-card-header custom-header layui-edge-right">删除订单</div>
+                        
                         <div class="layui-card-body">
+                            <div class="layui-card-header custom-header layui-edge-right">删除订单</div>
                             <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn">删除该订单</button>
                         </div>
                     </div>
@@ -308,8 +313,7 @@
                     $.ajax({
                         type: "POST",
                         url: "http://localhost:8080/updateorderstatus",
-                        data: JSON.stringify(formData),
-                        contentType: "application/json;charset=utf-8", 
+                        data: formData,
                         success: function (response) {
                             alert("更新成功");
                             window.location.reload();

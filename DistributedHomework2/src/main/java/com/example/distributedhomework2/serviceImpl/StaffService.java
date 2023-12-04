@@ -38,8 +38,8 @@ public class StaffService {
     public List<StaffBean>getByNamePhone(String username,String phoneNumber){
         return staffMapper.getByNamePhone(username,phoneNumber);
     }
-    public String addOne(String username,String phoneNumber,String sex){
-        int item=staffMapper.addOne(username,phoneNumber,sex);
+    public String addOne(String addID,String username,String phoneNumber,String sex){
+        int item=staffMapper.addOne(addID,username,phoneNumber,sex);
         if(item>0){
             return "success";
         }

@@ -23,7 +23,7 @@ public class StaffController {
     public String deleteStaff(String id){
         return staffService.deleteStaff(id);
     }
-    @RequestMapping(value = "/admin/allemployee",method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/allemployee",method = RequestMethod.GET)
     public List<StaffBean> loadAll(){
         return staffService.getAll();
     }
@@ -32,7 +32,9 @@ public class StaffController {
         return staffService.getByNamePhone(username,phoneNumber);
     }
     @RequestMapping(value = "/admin/addemployee",method = RequestMethod.POST)
-    public String addOne(String addName,String addPhone,String addSex){
-        return staffService.addOne(addName,addPhone,addSex);
+    public String addOne(String addID,String addName,String addPhone,String addSex){
+        System.out.println("ID:"+addID+"name"+addName+"phone"+addPhone+"sex"+addSex);
+
+        return staffService.addOne(addID,addName,addPhone,addSex);
     }
 }

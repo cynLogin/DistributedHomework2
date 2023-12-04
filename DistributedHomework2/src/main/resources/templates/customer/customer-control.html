@@ -61,7 +61,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <div class="layui-row">
             <!-- 客户信息左侧部分 -->
             <div class="layui-col-md6">
@@ -74,8 +73,9 @@
                         <br>
                         <br>
                     </p>
-                    <div class="layui-card-header custom-header layui-edge-right">客户信息</div>
-                    <div class="layui-card-body">
+                    
+
+                        <div class="layui-card-header custom-header layui-edge-right">客户信息</div>
                         <form class="layui-form">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">ID:</label>
@@ -177,7 +177,7 @@
                     console.log("客户信息返回" + response);
                     $("#userID").val(response.id);
                     $("#userName").val(response.username);
-                    $("#gender").val(response.gender);
+                    $("#gender").val(response.sex);
                     $("#phone").val(response.phoneNumber);
                     $("#consumption").val(response.totalConsumption);
                     $("#address").val(response.address);
@@ -189,7 +189,7 @@
         }
 
         $("#modifyBtn").click(function (event) {
-            event.preventDefault();
+            //event.preventDefault();
             let newName = $("#userName").val();
             let newGender = $("#gender").val();
             let newPhone = $("#phone").val();
@@ -198,7 +198,7 @@
             let formData = {
                 id: customerID,
                 newName: newName,
-                newGender: newGender,
+                newSex: newGender,
                 newPhone: newPhone,
                 newConsumption: newConsumption,
                 newAddress: newAddress
@@ -206,8 +206,7 @@
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/modifycustomer",
-                data: JSON.stringify(formData),
-                contentType: "application/json;charset=utf-8",
+                data: formData,
                 success: function (response) {
                     if (response == "success") {
                         alert("修改成功");
@@ -223,15 +222,14 @@
         });
 
         function deleteWorker(event) {
-            event.preventDefault();
+            
             let formData = {
                 id: customerID
             };
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/modifycustomer/delete",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData), //将表单转换为JSON格式
+                data: formData, //将表单转换为JSON格式
                 success: function (response) {
                     console.log("Success" + response);
                     if (response == 'success') {

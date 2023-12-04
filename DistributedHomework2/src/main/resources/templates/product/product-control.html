@@ -55,14 +55,14 @@
                         <br>
                         <br>
                     </p>
-                    
-                    </div>
-                    <div class="layui-card-body layui-edge-right">
-                        <button class="layui-btn " id="backBtn">返回</button>
-                    </div>
+
+                </div>
+                <div class="layui-card-body layui-edge-right">
+                    <button class="layui-btn " id="backBtn">返回</button>
                 </div>
             </div>
         </div>
+
         <div class="layui-row">
             <!-- 客户信息左侧部分 -->
             <div class="layui-col-md6">
@@ -75,51 +75,52 @@
                         <br>
                         <br>
                     </p>
+
+
                     <div class="layui-card-header custom-header layui-edge-right">产品信息</div>
-                    <div class="layui-card-body">
-                        <form class="layui-form">
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">ID:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="queryID" lay-verify="required" class="layui-input"
-                                        placeholder="待查询" disabled>
-                                </div>
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">ID:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="queryID" lay-verify="required" class="layui-input"
+                                    placeholder="待查询" disabled>
                             </div>
-                            <div class="layui-form-item">
-                                <p>
-                                    <label class="layui-form-label">名称:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="queryName" lay-verify="required" class="layui-input"
-                                        placeholder="待查询">
-                                </div>
-
-                                </p>
+                        </div>
+                        <div class="layui-form-item">
+                            <p>
+                                <label class="layui-form-label">名称:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="queryName" lay-verify="required" class="layui-input"
+                                    placeholder="待查询">
                             </div>
 
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">单价:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="queryPrice" lay-verify="required" class="layui-input"
-                                        placeholder="待查询">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">库存:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="queryInventory" lay-verify="required" class="layui-input"
-                                        placeholder="待查询">
-                                </div>
-                            </div>
+                            </p>
+                        </div>
 
-                        </form>
-                        <button class="layui-btn custom-button-left" id="modifyBtn">修改产品信息</button>
-                        <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn"
-                            onclick="confirmAction()">删除该产品</button>
-                    </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">单价:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="queryPrice" lay-verify="required" class="layui-input"
+                                    placeholder="待查询">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">库存:</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="queryInventory" lay-verify="required" class="layui-input"
+                                    placeholder="待查询">
+                            </div>
+                        </div>
+
+                    </form>
+                    <button class="layui-btn custom-button-left" id="modifyBtn">修改产品信息</button>
+                    <button class="layui-btn layui-btn-danger custom-button-left" id="deleteBtn"
+                        onclick="confirmAction()">删除该产品</button>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
 
@@ -143,7 +144,7 @@
             var form = layui.form;
             var laydate = layui.laydate;
         });
-        var url=window.location.href;
+        var url = window.location.href;
         var productID = url.match(/\/productModify\/(\d+)$/)[1];
         //确认删除
         function confirmAction() {
@@ -172,8 +173,7 @@
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/admin/getproduct",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData),
+                data: formData,
                 success: function (response) {
                     console.log("产品信息返回" + response);
                     $("#queryID").val(response.id);
@@ -202,8 +202,7 @@
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/admin/modifyproduct",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData),
+                data: formData,
                 success: function (response) {
                     if (response == "success") {
                         alert("修改成功");
@@ -219,15 +218,14 @@
             });
         });
         function deleteProdcut(event) {
-            event.preventDefault();
+
             let formData = {
                 id: productID
             };
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/admin/deleteproduct",
-                contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(formData), //将表单转换为JSON格式
+                data: formData, //将表单转换为JSON格式
                 success: function (response) {
                     console.log("Success" + response);
                     if (response == 'success') {

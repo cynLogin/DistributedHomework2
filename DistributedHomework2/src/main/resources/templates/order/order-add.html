@@ -60,37 +60,39 @@
                     <button class="layui-btn " id="backBtn">返回</button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="layui-row">
-        <!-- 订单信息 -->
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <p>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
 
-                </p>
-                <div class="layui-card-header custom-header layui-edge-right">基本信息</div>
-                <div class="layui-card-body">
-                    <div class="layui-container">
-                        <div class="layui-card-body">
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">客户:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="customerName" lay-verify="required" class="layui-input"
-                                        placeholder="请输入客户姓名">
+
+        <div class="layui-row">
+            <!-- 订单信息 -->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                    </p>
+
+
+                        <div class="layui-card-header custom-header layui-edge-right">基本信息</div>
+                        <div class="layui-container">
+                            <div class="layui-card-body">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="customerName" lay-verify="required" class="layui-input"
+                                            placeholder="请输入客户姓名">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">订单备注:</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="orderRemark" lay-verify="required" class="layui-input"
-                                        placeholder="请输入订单备注">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">订单备注:</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="orderRemark" lay-verify="required" class="layui-input"
+                                            placeholder="请输入订单备注">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -98,92 +100,94 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="layui-row">
-        <!-- 订单信息 -->
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <p>
+        <div class="layui-row">
+            <!-- 订单信息 -->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
 
-                </p>
-                <div class="layui-card-header custom-header layui-edge-right">订单内容</div>
+                    </p>
 
-                <div class="layui-card-body">
-                    <div class="layui-container">
-                        <!-- 这里设置display: none 是避免多余的表头显示 -->
-                        <table class="layui-table" lay-filter="orderContentTable" id="orderContentTable">
-                            <thead>
-                                <tr>
-                                    <th lay-data="{field:'id', width:100}">产品编号</th>
-                                    <th lay-data="{field:'productName', width:100}">产品名称</th>
-                                    <th lay-data="{field:'unitPrice', width:100}">单价</th>
-                                    <th lay-data="{field:'quantity', width:100}">数量</th>
-                                    <th lay-data="{field:'price', width:100}">金额</th>
-                                    <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">订单总价:</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="totalPrice" lay-verify="required" class="layui-input" disabled>
-                </div>
-            </div>
-            <div class="layui-card-body">
-                <button class="layui-btn " style="margin-left: 95px" id="addOrderBtn">创建订单</button>
-            </div>
-        </div>
-    </div>
-    <div class="layui-row">
-        <!-- 订单信息 -->
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <p>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
 
-                </p>
-                <div class="layui-card-header custom-header layui-edge-right">添加产品</div>
-                <div class="layui-card-body">
-                    <div class="layui-container">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">产品名称:</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="queryName" lay-verify="required" class="layui-input"
-                                    placeholder="请输入要查询的产品名称">
-                            </div>
-                            <button class="layui-btn custom-button-left" id="queryBtn">查询</button>
-                            <button class="layui-btn custom-button-left" id="disQueryBtn">取消</button>
+                        <div class="layui-card-header custom-header layui-edge-right">订单内容</div>
+
+                        <div class="layui-container">
+                            <!-- 这里设置display: none 是避免多余的表头显示 -->
+                            <table class="layui-table" lay-filter="orderContentTable" id="orderContentTable" style="display: none;">
+                                <thead>
+                                    <tr>
+                                        <th lay-data="{field:'id', width:100}">产品编号</th>
+                                        <th lay-data="{field:'productName', width:100}">产品名称</th>
+                                        <th lay-data="{field:'unitPrice', width:100}">单价</th>
+                                        <th lay-data="{field:'quantity', width:100}">数量</th>
+                                        <th lay-data="{field:'price', width:100}">金额</th>
+                                        <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">订单总价:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="totalPrice" lay-verify="required" class="layui-input" disabled>
+                    </div>
+                </div>
                 <div class="layui-card-body">
-                    <div class="layui-container">
-                        <!-- 这里设置display: none 是避免多余的表头显示 -->
-                        <table class="layui-table" lay-filter="productQueryTable" id="productQueryTable">
-                            <thead>
-                                <tr>
-                                    <th lay-data="{field:'id', width:100}">产品编号</th>
-                                    <th lay-data="{field:'productName', width:100}">产品名称</th>
-                                    <th lay-data="{field:'unitPrice', width:100}">单价</th>
-                                    <th lay-data="{field:'inventoryNum', width:100}">库存数量</th>
-                                    <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作</th>
-                                </tr>
-                            </thead>
-                        </table>
+                    <button class="layui-btn " style="margin-left: 95px" id="addOrderBtn">创建订单</button>
+                </div>
+            </div>
+
+        <div class="layui-row">
+            <!-- 订单信息 -->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                    </p>
+
+
+                        <div class="layui-card-header custom-header layui-edge-right">添加产品</div>
+                        <div class="layui-container">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">产品名称:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="queryName" lay-verify="required" class="layui-input"
+                                        placeholder="请输入要查询的产品名称">
+                                </div>
+                                <button class="layui-btn custom-button-left" id="queryBtn">查询</button>
+                                <button class="layui-btn custom-button-left" id="disQueryBtn">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-container">
+                            <!-- 这里设置display: none 是避免多余的表头显示 -->
+                            <table class="layui-table" lay-filter="productQueryTable" id="productQueryTable" style="display: none;">
+                                <thead>
+                                    <tr>
+                                        <th lay-data="{field:'id', width:100}">产品编号</th>
+                                        <th lay-data="{field:'productName', width:100}">产品名称</th>
+                                        <th lay-data="{field:'unitPrice', width:100}">单价</th>
+                                        <th lay-data="{field:'inventoryNum', width:100}">库存数量</th>
+                                        <th lay-data="{fixed:'right', width:150, align:'center', toolbar:'#bar'}">操作
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
     </div>
 
 

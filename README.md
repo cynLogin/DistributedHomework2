@@ -225,7 +225,7 @@ let queryData = {
     };
 ```
 
-- http://localhost:8080/admin/addemployee ,POST
+- http://localhost:8080/admin/queryemployee , POST
 
 ​		添加新员工,发送员工姓名,性别,电话,若添加成功返回"success",数据格式如下:
 

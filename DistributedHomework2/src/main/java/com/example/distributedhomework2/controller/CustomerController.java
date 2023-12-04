@@ -24,6 +24,7 @@ public class CustomerController {
     }
     @RequestMapping(value = "/modifycustomer",method = RequestMethod.POST)
     public String update(String id,String newName,String newSex,String newPhone,double newConsumption,String newAddress){
+
         return customerService.update(id,newPhone,newName,newSex,newConsumption,newAddress);
     }
     @RequestMapping(value = "/modifycustomer/delete",method = RequestMethod.POST)
@@ -32,6 +33,7 @@ public class CustomerController {
     }
     @RequestMapping(value = "/employee/getcustomer",method = RequestMethod.POST)
     public List<CustomerBean> getByStaffId(String employeeID){
+
         return customerService.loadByEmployeeId(employeeID);
     }
     @RequestMapping(value = "/employee/addcustomer",method = RequestMethod.POST)

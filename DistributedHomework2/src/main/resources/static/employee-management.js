@@ -13,11 +13,11 @@ function renderEmployeeTable(table) {
                 toolbar: '#toolbar',
                 defaultToolbar: ['filter', 'exports'],
                 cols: [[
-                    { field: 'id', width: 100, title: '员工编号' },
-                    { field: 'username', width: 100, title: '员工姓名' },
-                    { field: 'gender', width: 100, title: '员工性别' },
-                    { field: 'phoneNumber', width: 120, title: '员工电话' },
-                    { fixed: 'right', width: 200, align: 'center', toolbar: '#bar', title: '操作' }
+                    { field: 'id', title: '员工编号' },
+                    { field: 'username', title: '员工姓名' },
+                    { field: 'sex',  title: '员工性别' },
+                    { field: 'phoneNumber', title: '员工电话' },
+                    { fixed: 'right', align: 'center', toolbar: '#bar2', title: '操作' }
                 ]],
                 page: true
             });
@@ -45,8 +45,7 @@ function renderEmployeeQueryTable(table,queryName,queryPhone) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/admin/queryemployee",
-        data: JSON.stringify(queryData),
-        contentType: "application/json;charset=utf-8",
+        data: queryData,
         success: function (response) {
             queryCustomerInfoData = response;
             console.log("查询员工返回:", queryCustomerInfoData);
@@ -57,11 +56,11 @@ function renderEmployeeQueryTable(table,queryName,queryPhone) {
                 toolbar: '#toolbar',
                 defaultToolbar: ['filter', 'exports'],
                 cols: [[
-                    { field: 'id', width: 100, title: '员工编号' },
-                    { field: 'username', width: 100, title: '员工姓名' },
-                    { field: 'gender', width: 100, title: '员工性别' },
-                    { field: 'phoneNumber', width: 120, title: '员工电话' },
-                    { fixed: 'right', width: 200, align: 'center', toolbar: '#bar', title: '操作' }
+                    { field: 'id', title: '员工编号' },
+                    { field: 'username',  title: '员工姓名' },
+                    { field: 'sex',  title: '员工性别' },
+                    { field: 'phoneNumber',  title: '员工电话' },
+                    { fixed: 'right',  align: 'center', toolbar: '#bar2', title: '操作' }
                 ]],
                 page: true
             });

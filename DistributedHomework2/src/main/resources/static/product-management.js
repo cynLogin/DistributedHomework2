@@ -13,11 +13,11 @@ function renderProductData(table) {
                 toolbar: '#toolbar',
                 defaultToolbar: ['filter', 'exports'],
                 cols: [[
-                    { field: 'id', width: 100, title: '产品编号' },
-                    { field: 'productName', width: 100, title: '产品名称' },
-                    { field: 'unitPrice', width: 100, title: '单价' },
-                    { field: 'inventoryNum', width: 120, title: '库存数量' },
-                    { fixed: 'right', width: 200, align: 'center', toolbar: '#bar', title: '操作' }
+                    { field: 'id',  title: '产品编号' },
+                    { field: 'productName',  title: '产品名称' },
+                    { field: 'unitPrice', title: '单价' },
+                    { field: 'inventoryNum',  title: '库存数量' },
+                    { fixed: 'right',  align: 'center', toolbar: '#bar', title: '操作' }
                 ]],
                 page: true
             });
@@ -43,8 +43,7 @@ function renderQueryProductData(table, queryName) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/queryProduct",
-        data: JSON.stringify(queryData),
-        contentType: "application/json;charset=utf-8",
+        data: queryData,
         success: function (response) {
             productInfo = response;
             console.log("查询产品返回:", productInfo);
@@ -55,11 +54,11 @@ function renderQueryProductData(table, queryName) {
                 toolbar: '#toolbar',
                 defaultToolbar: ['filter', 'exports'],
                 cols: [[
-                    { field: 'id', width: 100, title: '产品编号' },
-                    { field: 'productName', width: 100, title: '产品名称' },
-                    { field: 'unitPrice', width: 100, title: '单价' },
-                    { field: 'inventoryNum', width: 120, title: '库存数量' },
-                    { fixed: 'right', width: 200, align: 'center', toolbar: '#bar2', title: '操作' }
+                    { field: 'id',  title: '产品编号' },
+                    { field: 'productName', title: '产品名称' },
+                    { field: 'unitPrice',  title: '单价' },
+                    { field: 'inventoryNum',  title: '库存数量' },
+                    { fixed: 'right',  align: 'center', toolbar: '#bar2', title: '操作' }
                 ]],
                 page: true
             });

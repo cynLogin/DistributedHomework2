@@ -26,7 +26,7 @@
         SELECT * from staff where username like CONCAT("%",#{username},"%") AND phone_number like CONCAT("%",#{phoneNumber},"%")
     </select>
     <insert id="addOne">
-        insert into staff(username,sex,phone_number)
-    values (username,sex,phoneNumber)
+        insert into staff(id,username,sex,phone_number)
+    values (#{id},#{username},#{sex},#{phoneNumber})
     </insert>
 </mapper>
