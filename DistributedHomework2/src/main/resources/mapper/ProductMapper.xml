@@ -33,7 +33,7 @@
         values(#{id},#{productName},#{unitPrice})
     </insert>
     <select id="getByOrderId" resultType="com.example.distributedhomework2.bean.ProductBean">
-        select id,product_name,unit_price,inventory_num from
+        select id,product_name,unit_price,inventory_num,num from
         orders_product left outer join product on product_id=id
         where order_id=#{id}
     </select>
