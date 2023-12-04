@@ -2,10 +2,7 @@ package com.example.distributedhomework2.controller;
 
 import com.example.distributedhomework2.bean.StaffBean;
 import com.example.distributedhomework2.serviceImpl.StaffService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,7 +16,7 @@ public class StaffController {
         return staffService.getStaffInfo(id);
     }
     @RequestMapping(value = "/modifyemployee",method = RequestMethod.POST)
-    public String changeStaff(String id,String newName,String newSex,String newPhone){
+    public String changeStaff(@RequestParam String id, @RequestParam String newName, @RequestParam String newSex, @RequestParam String newPhone){
         return staffService.changeStaff(id,newName,newSex,newPhone);
     }
     @RequestMapping(value = "/modifyemployee/delete",method = RequestMethod.POST)

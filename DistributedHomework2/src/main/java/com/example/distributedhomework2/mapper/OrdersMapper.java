@@ -9,4 +9,5 @@ public interface OrdersMapper {
     List<OrdersBean> getAllByCustomerId(String id);
     int addOneOrder(double amountMoney,int completionStatus,String consumerId,String notes);
     int changeStatus(String id,String completionStatus);
+    int deleteOrder(String orderID);
 }

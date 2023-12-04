@@ -35,4 +35,13 @@ public class OrdersService {
             return "error";
         }
     }
+    public String deleteOrder(String id){
+        int changes=ordersMapper.deleteOrder(id);
+        if(changes>0){
+            return "success";
+        }
+        else{
+            return "error";
+        }
+    }
 }

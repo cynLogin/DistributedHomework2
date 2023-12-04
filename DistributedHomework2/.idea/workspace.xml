@@ -23,6 +23,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="7bbd479b-eadc-433a-a09f-ea7372a82075" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -48,7 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/陈俞宁/作业/大三上/分布式（双语）/DistributedHomework2/DistributedHomework2",
+    "last_opened_file_path": "D:/陈俞宁/作业/大三上/分布式（双语）/DistributedHomework2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,6 +90,8 @@
       <workItem from="1699886036462" duration="2283000" />
       <workItem from="1701605517715" duration="161000" />
       <workItem from="1701605701981" duration="152000" />
+      <workItem from="1701653763091" duration="88000" />
+      <workItem from="1701654678913" duration="156000" />
     </task>
     <task id="LOCAL-00001" summary="将所有的view控制器添加完毕">
       <created>1701605614337</created>

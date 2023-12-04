@@ -12,6 +12,13 @@
         insert into orders(amount_money,conpletion_status,consumer_id,notes) values (#{amountMoney},#{completionStatus},#{consumerId},#{notes})
     </insert>
     <update id="changeStatus">
-        update
+        update orders
+        set completion_status=#{completionStatus}
+        where id=#{id}
     </update>
+    <delete id="deleteOrder">
+        delete from orders
+        where id=#{orderID}
+    </delete>
+
 </mapper>

@@ -28,8 +28,12 @@ public class OrdersController {
     public String addOneOrder(double amountMoney,int completionStatus,String consumerId,String notes){
         return ordersService.addOneOrder(amountMoney,completionStatus,consumerId,notes);
     }
-//    @RequestMapping(value = "/updateorderstatus",method = RequestMethod.POST)
-//    public String changeStatus(String orderID){
-//
-//    }
+    @RequestMapping(value = "/updateorderstatus",method = RequestMethod.POST)
+    public String changeStatus(String orderID,String status){
+        return ordersService.changeStatus(orderID,status);
+    }
+    @RequestMapping(value = "/deleteorder",method = RequestMethod.POST)
+    public String deleteOrder(String orderID){
+        return ordersService.deleteOrder(orderID);
+    }
 }

@@ -13,7 +13,6 @@
         UPDATE customer
         SET phone_number=#{phoneNumber},
             username=#{username},
-            password=#{password},
             address=#{address},
             total_consumption=#{totalConsumption},
             sex=#{sex}
