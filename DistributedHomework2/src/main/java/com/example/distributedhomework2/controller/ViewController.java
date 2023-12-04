@@ -9,11 +9,11 @@ public class ViewController {
     public String adminHome(){
         return "/admin/admin-home";
     }
-    @RequestMapping("/customerDetail/{ID}")
+    @RequestMapping("/employee/customerDetail/{ID}")
     public String customerDetail(){
         return "/customer/customer-detail";
     }
-    @RequestMapping("/customerModify/{ID}")
+    @RequestMapping("/employee/customerModify/{ID}")
     public String customerControl(){
         return "/customer/customer-control";
     }
@@ -21,15 +21,19 @@ public class ViewController {
     public String employee(){
         return "/employee/employee-home";
     }
-    @RequestMapping("/employeeinfo/{emplyeeID}")
+    @RequestMapping("/employee/employeeinfo/{emplyeeID}")
     public String employeeInfo(){
+        return "/employee/employee-control";
+    }
+    @RequestMapping("admin/employeeinfo/{emplyeeID}")
+    public String adminEmployeeInfo(){
         return "/employee/employee-control";
     }
     @RequestMapping("/admin/employeecontrol")
     public String employeeManagement(){
         return "/employee/employee-management";
     }
-    @RequestMapping("/orderDetail/{ID}")
+    @RequestMapping("/employee/orderDetail/{ID}")
     public String orderDetail(){
         return "/order/order-detail";
     }

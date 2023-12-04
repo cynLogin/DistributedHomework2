@@ -27,7 +27,7 @@ function renderEmployeeTable(table) {
                     // 查看用户详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/admin/employeeDetail/" + selectedData.id;
+                    window.location.href = "http://localhost:8080/admin/employeeinfo/" + selectedData.id;
                 } 
             });
         },
@@ -70,7 +70,7 @@ function renderEmployeeQueryTable(table,queryName,queryPhone) {
                     // 查看用户详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/admin/employeeDetail/" + selectedData.id;
+                    window.location.href = "http://localhost:8080/admin/employeeinfo/" + selectedData.id;
                 } 
             });
         },

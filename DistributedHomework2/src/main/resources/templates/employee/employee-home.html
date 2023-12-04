@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="layui-card-body layui-edge-right">
-                    <a href="http://localhost:8080/user/logout" class="layui-btn ">登出</a>
+                    <a href="http://localhost:8080/employee/logout" class="layui-btn ">登出</a>
                     <button class="layui-btn " id="addOrderBtn">创建订单</button>
                     <button class="layui-btn " id="userInfoBtn">个人信息</button>
                 </div>
@@ -76,7 +76,7 @@
                             <label class="layui-form-label">客户姓名:</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="queryName" lay-verify="required" class="layui-input"
-                                    placeholder="请输入要查询的客户姓名" >
+                                    placeholder="请输入要查询的客户姓名">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -96,7 +96,8 @@
                     <div class="layui-card-body">
                         <div class="layui-container">
                             <!-- 这里设置display: none 是避免多余的表头显示 -->
-                            <table class="layui-table" lay-filter="queryCustomerTable" id="queryCustomerTable" style="display: none;">
+                            <table class="layui-table" lay-filter="queryCustomerTable" id="queryCustomerTable"
+                                style="display: none;">
                                 <thead>
                                     <tr>
                                         <th lay-data="{field:'id', width:100}">客户编号</th>
@@ -120,18 +121,15 @@
                         <br>
                         <br>
                         <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+
                     </p>
                     <div class="layui-card-header custom-header layui-edge-right">客户跟进</div>
                     <div class="layui-card">
                         <div class="layui-card-body">
                             <div class="layui-container">
                                 <!-- 这里设置display: none 是避免多余的表头显示 -->
-                                <table class="layui-table" lay-filter="customerFollowTable" id="customerFollowTable" style="display: none;">
+                                <table class="layui-table" lay-filter="customerFollowTable" id="customerFollowTable"
+                                    style="display: none;">
                                     <thead>
                                         <tr>
                                             <th lay-data="{field:'id', width:100}">客户编号</th>
@@ -229,7 +227,7 @@
                 window.location.href = "http://localhost:8080/employee/addorder/" + employeeID;
             });
             $("#userInfoBtn").click(function () {
-                window.location.href = "http://localhost:8080/employeeinfo/" + employeeID;
+                window.location.href = "http://localhost:8080/employee/employeeinfo/" + employeeID;
             });
             $("#queryBtn").click(function () {
                 let name = $("#queryName").val();

@@ -1,4 +1,4 @@
-function renderQueryCustomerTable(table,queryName,queryPhone,employeeID) {
+function renderQueryCustomerTable(table, queryName, queryPhone, employeeID) {
     let queryCustomerInfoData;
     let queryData = {
         "userName": queryName,
@@ -35,8 +35,8 @@ function renderQueryCustomerTable(table,queryName,queryPhone,employeeID) {
                     // 查看用户详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/customerDetail/" + selectedData.id;
-                } 
+                    window.location.href = "http://localhost:8080/employee/customerDetail/" + selectedData.id;
+                }
             });
         },
         error: function (error) {
@@ -44,10 +44,10 @@ function renderQueryCustomerTable(table,queryName,queryPhone,employeeID) {
         }
     });
 }
-function renderCustomerFollowTable(table,employeeID) {
+function renderCustomerFollowTable(table, employeeID) {
     let queryCustomerInfoData;
-    let formData={
-        "employeeID":employeeID
+    let formData = {
+        "employeeID": employeeID
     }
     $.ajax({
         type: "POST",
@@ -79,8 +79,8 @@ function renderCustomerFollowTable(table,employeeID) {
                     // 查看用户详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/customerDetail/" + selectedData.id;
-                } 
+                    window.location.href = "http://localhost:8080/employee/customerDetail/" + selectedData.id;
+                }
             });
         },
         error: function (error) {
@@ -104,10 +104,10 @@ function renderOrderTable(table) {
                 cols: [[
                     { field: 'id', title: '订单编号' },
                     { field: 'orderTime', title: '下单时间' },
-                    { field: 'amountMoney',  title: '订单金额' },
-                    { field: 'content',  title: '订单内容' },
-                    { field: 'completionStatus',  title: '完成状态' },
-                    { fixed: 'right',  align: 'center', toolbar: '#bar', title: '操作' }
+                    { field: 'amountMoney', title: '订单金额' },
+                    { field: 'content', title: '订单内容' },
+                    { field: 'completionStatus', title: '完成状态' },
+                    { fixed: 'right', align: 'center', toolbar: '#bar', title: '操作' }
                 ]],
                 page: true
             });
@@ -117,8 +117,8 @@ function renderOrderTable(table) {
                     // 查看用户详情
                     var selectedData = obj.data;
                     console.log("查看", selectedData);
-                    window.location.href = "http://localhost:8080/orderDetail/" + selectedData.id;
-                } 
+                    window.location.href = "http://localhost:8080/employee/orderDetail/" + selectedData.id;
+                }
             });
         },
         error: function (error) {
