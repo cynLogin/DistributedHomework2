@@ -22,8 +22,8 @@
         where id=#{orderID}
     </delete>
     <select id="getAll" resultType="com.example.distributedhomework2.bean.OrdersBean">
-        select * from
-                     orders
+        select * from orders
+        order by order_time desc
     </select>
     <select id="getNew" resultType="String">
         select id from orders
