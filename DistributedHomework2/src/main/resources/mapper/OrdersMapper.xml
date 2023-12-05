@@ -7,6 +7,7 @@
     </select>
     <select id="getAllByCustomerId" resultType="com.example.distributedhomework2.bean.OrdersBean">
         SELECT * FROM orders where consumer_id=#{id}
+        order by order_time desc
     </select>
     <insert id="addOneOrder" >
         insert into orders(amount_money,order_time,completion_status,consumer_id,notes) values (#{amountMoney},NOW(),0,
