@@ -37,6 +37,7 @@ YQYJin
 
 - "http://localhost:8080/customerDetail/" {ID}; 客户详情页(customer-detail.html)
 - "http://localhost:8080/customerModify/" {ID} ; 客户信息修改页(customer-control.html)
+-  "http://localhost:8080/employee/addcustomer/" + employeeID; 添加客户页
 
 
 

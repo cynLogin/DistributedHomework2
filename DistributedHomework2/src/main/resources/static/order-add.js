@@ -53,9 +53,13 @@ function renderProductTable(table, layer, queryName) {
                         layer.closeAll();
                         $("#okBtn").off("click");
                         $("#cancelBtn").off("click");
+                        if(quantity>selectedData.inventoryNum){
+                            console.log("库存不足,添加失败")
+                            return;
+                        }
                         // 添加产品数量
                         selectedData.quantity = quantity;
-
+                        
                         // 计算本条金额
                         let price = calculateAmount(selectedData);
                         selectedData.price = price;
@@ -145,11 +149,12 @@ function addOrder() {
                 location.reload();
             }
             else {
-                alert("创建订单失败:" + response);
+                alert("创建订单失败,该客户不存在" );
             }
         },
         error: function (error) {
-            console.log("Error:" + error);
+            alert("创建订单失败,该客户不存在");
+            console.log(error)
         }
     });
 }

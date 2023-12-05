@@ -50,6 +50,7 @@
                 <div class="layui-card-body layui-edge-right">
                     <a href="http://localhost:8080/employee/logout" class="layui-btn ">登出</a>
                     <button class="layui-btn " id="addOrderBtn">创建订单</button>
+                    <button class="layui-btn " id="addCustomerBtn">新建客户</button>
                     <button class="layui-btn " id="userInfoBtn">个人信息</button>
                 </div>
             </div>
@@ -229,6 +230,10 @@
             $("#userInfoBtn").click(function () {
                 window.location.href = "http://localhost:8080/employee/employeeinfo/" + employeeID;
             });
+            $("#addCustomerBtn").click(function () {
+                window.location.href = "http://localhost:8080/employee/addcustomer/" + employeeID;
+            });
+            
             $("#queryBtn").click(function () {
                 let name = $("#queryName").val();
                 let phone = $("#queryPhone").val();

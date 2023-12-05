@@ -28,8 +28,8 @@
         order by recent_order_time desc
     </select>
     <insert id="addOne">
-        insert into customer(id,phone_number,username,address,staff_id,sex)
-        values (#{id},#{phoneNumber},#{username},{address},#{staffId},#{sex})
+        insert into customer(id,phone_number,username,address,staff_id,sex,recent_order_time)
+        values (#{id},#{phoneNumber},#{username},#{address},#{staff_id},#{sex},'2023:01:01 00:00:00')
     </insert>
     <select id="getAll" resultType="com.example.distributedhomework2.bean.CustomerBean">
         SELECT * FROM customer

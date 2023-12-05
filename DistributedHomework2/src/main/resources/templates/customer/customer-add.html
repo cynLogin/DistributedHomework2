@@ -75,7 +75,13 @@
                     </p>
                         <div class="layui-card-header custom-header layui-edge-right">注册客户</div>
                         <form class="layui-form">
-
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">ID:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="ID" lay-verify="required" class="layui-input"
+                                        placeholder="请输入客户ID">
+                                </div>
+                            </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">姓名:</label>
                                 <div class="layui-input-inline">
@@ -140,18 +146,22 @@
         var employeeID = url.match(/\/addcustomer\/(\d+)$/)[1];
 
 
-        $("#addBtn").click(function () {
+        $("#addBtn").click(function (event) {
+            event.preventDefault();
+            let id = $("#ID").val();
             let name = $("#userName").val();
             let gender = document.querySelector('input[name="gender"]:checked').value;
             let phone = $("#phone").val();
             let address = $("#address").val();
             let formData = {
+                id:id,
                 username: name,
-                gender: gender,
+                sex: gender,
                 phoneNumber: phone,
                 address: address,
                 employeeID: employeeID
             }
+            console.log(formData);
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/employee/addcustomer",
@@ -166,6 +176,7 @@
 
                 },
                 error: function (error) {
+                    alert("添加失败,该id已存在" );
                     console.log("Error:" + error);
                 }
             });

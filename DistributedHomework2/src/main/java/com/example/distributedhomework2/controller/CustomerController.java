@@ -47,6 +47,13 @@ public class CustomerController {
     }
     @RequestMapping(value = "/employee/addcustomer",method = RequestMethod.POST)
     public String addOne(String id,String username,String sex,String phoneNumber,String address,String employeeID){
+        //输出所有参数
+        System.out.println(id);
+        System.out.println(username);
+        System.out.println(sex);
+        System.out.println(phoneNumber);
+        System.out.println(address);
+        System.out.println(employeeID);
         return customerService.addOne(id,username,phoneNumber,sex,address,employeeID);
     }
     @GetMapping(value = "/admin/customer/all")
