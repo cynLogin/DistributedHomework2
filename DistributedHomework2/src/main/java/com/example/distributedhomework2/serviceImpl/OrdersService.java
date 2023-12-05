@@ -1,7 +1,9 @@
 package com.example.distributedhomework2.serviceImpl;
 
+import com.example.distributedhomework2.bean.CustomerBean;
 import com.example.distributedhomework2.bean.OrdersBean;
 import com.example.distributedhomework2.bean.ProductRequestBean;
+import com.example.distributedhomework2.mapper.CustomerMapper;
 import com.example.distributedhomework2.mapper.OrdersMapper;
 import com.example.distributedhomework2.mapper.OrdersProductMapper;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class OrdersService {
     OrdersMapper ordersMapper;
     @Resource
     OrdersProductMapper ordersProductMapper;
+    @Resource
+    CustomerMapper customerMapper;
     public OrdersBean getById(String id){
         return ordersMapper.getById(id);
     }
@@ -46,8 +50,8 @@ public class OrdersService {
     public String addOrder(double totalPrice, String customerName, String orderRemark, List<Map<String,String>> orderContent)
     {
         //输出orderContent
-
-        int item1=ordersMapper.addOneOrder(totalPrice,customerName,orderRemark);
+        CustomerBean customerBean=customerMapper.getByName(customerName);
+        int item1=ordersMapper.addOneOrder(totalPrice,customerBean.getId(),orderRemark);
         System.out.println(item1);
         String newId=ordersMapper.getNew();
         for (Map<String,String> data : orderContent) {

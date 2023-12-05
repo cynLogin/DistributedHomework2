@@ -34,4 +34,7 @@
     <select id="getAll" resultType="com.example.distributedhomework2.bean.CustomerBean">
         SELECT * FROM customer
     </select>
+    <select id="getByName" resultType="com.example.distributedhomework2.bean.CustomerBean">
+        select * FROM customer where username=#{username}
+    </select>
 </mapper>
