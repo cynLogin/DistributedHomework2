@@ -49,6 +49,7 @@ public class StaffService {
     }
     public String updatePwd(String id,String password,String newPassword){
         int item=staffMapper.updatePwd(id,password,newPassword);
+        System.out.println("mim"+item+password);
         if(item>0){
             return "success";
         }

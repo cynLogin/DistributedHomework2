@@ -39,6 +39,6 @@ public class StaffController {
     }
     @RequestMapping(value = "/modifyemployee/password",method = RequestMethod.POST)
     public String updatePwd(String id,String nowPassword,String newPassword){
-        return staffService.updatePwd(id,newPassword,newPassword);
+        return staffService.updatePwd(id,nowPassword,newPassword);
     }
 }
